@@ -21,7 +21,6 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import SubNav from "./SubNav";
 const drawerWidth = 200;
-const apiUrl = `https://api.ohf.ag/testing/crop_chart?fbclid=IwAR0trukeUF9xjv-duRNXbD9Bx35qIBJZSZBmaprrGdFYiZY8IR9BdsKKj8c`;
 const styles = () => ({
   root: {
     display: "flex"

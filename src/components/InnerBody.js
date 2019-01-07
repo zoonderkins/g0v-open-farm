@@ -57,7 +57,7 @@ class InnerBody extends Component  {
         throw new Error(finalResult);
       } // only list previous 3 items
       finalResult = finalResult.filter((item)=> {
-        return item.cover != null;
+        return item.cover != null && item.avg_total_growing_days!= null && item.min_growing_temperature!= null;
       });
       finalResult = finalResult.slice(0,prevFetchNum);
       console.log(finalResult);
@@ -73,7 +73,7 @@ class InnerBody extends Component  {
     return (vegetableList.map((ctx, index) => (
       <Grid key={index} item xs={3} className={classes.gridMargin}>
         <Paper className={classes.root}>
-          <Link to="/content">
+          <Link to={{pathname:"/content", state:{...ctx}}}>
             <img className={classes.img} src={ctx.cover} />
             <Typography component="p" className={classes.p}>
               {ctx.common_names_zh}

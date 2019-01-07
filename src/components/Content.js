@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
@@ -49,52 +49,66 @@ const styles = {
   }
 };
 
-const Content = props => {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <CardMedia
-        component="img"
-        alt="Pumpkin"
-        className={classes.media}
-        image="https://swl-d607.kxcdn.com/wp-content/uploads/2016/09/Sugar-Pie-Pumkin-200x200.jpg"
-        title="Pumpkin"
-      />
-      <Link to="/page">
-        <IconButton className={classes.back}>
-          <ChevronLeftIcon style={{ color: "white", fontWeight: "bold" }} />
-        </IconButton>
-      </Link>
-
-      <Fab color="brown" className={classes.fab}>
-        <img
-          style={{ height: "40px" }}
-          src="https://static.thenounproject.com/png/61962-200.png"
+class Content extends Component {
+  constructor(props){
+    super(props);
+    let {location} = this.props;
+    let vegatable = location?(location.hasOwnProperty('state')? location.state:null):null;
+    this.state = {
+      "vegatable": vegatable
+    };
+  }
+  render() {
+    const {classes} = this.props;
+    const {vegatable} = this.state;
+    console.log(vegatable);
+  
+    return (
+      <div className={classes.root}>
+        <CardMedia
+          component="img"
+          alt="Pumpkin"
+          className={classes.media}
+          image={`${vegatable.cover}`}
+          title="Pumpkin"
         />
-      </Fab>
-      <div className={classes.wrap}>
-        {[...Array(12)].map((x, i) => (
-          <Card key={i} className={classes.card}>
-            <CardActionArea>
-              <Link to="/aa">
-                <CardContent>
-                  <Typography component="h1">
-                    <img
-                      className={classes.contentImg}
-                      src="https://static.thenounproject.com/png/61962-200.png"
-                    />
-                  </Typography>
-                  <Typography component="p" style={{ textAlign: "center" }}>
-                    xxx
-                  </Typography>
-                </CardContent>
-              </Link>
-            </CardActionArea>
-          </Card>
-        ))}
+        <Link to="/page">
+          <IconButton className={classes.back}>
+            <ChevronLeftIcon style={{ color: "white", fontWeight: "bold" }} />
+          </IconButton>
+        </Link>
+
+        <Fab color="brown" className={classes.fab}>
+          <img
+            style={{ height: "40px" }}
+            src="https://static.thenounproject.com/png/61962-200.png"
+          />
+        </Fab>
+        <div className={classes.wrap}>
+          {[...Array(12)].map((x, i) => (
+            <Card key={i} className={classes.card}>
+              <CardActionArea>
+                <Link to="/aa">
+                  <CardContent>
+                    <Typography component="h1">
+                      <img
+                        className={classes.contentImg}
+                        src="https://static.thenounproject.com/png/61962-200.png"
+                      />
+                    </Typography>
+                    <Typography component="p" style={{ textAlign: "center" }}>
+                      {`${vegatable.common_names_zh}`}
+                    </Typography>
+                  </CardContent>
+                </Link>
+              </CardActionArea>
+            </Card>
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+  
 };
 
 Content.propTypes = {
