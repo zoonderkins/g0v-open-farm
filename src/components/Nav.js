@@ -21,6 +21,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import SubNav from "./SubNav";
 const drawerWidth = 200;
+const apiUrl = `https://api.ohf.ag/testing/crop_chart?fbclid=IwAR0trukeUF9xjv-duRNXbD9Bx35qIBJZSZBmaprrGdFYiZY8IR9BdsKKj8c`;
 const styles = () => ({
   root: {
     display: "flex"
@@ -63,6 +64,7 @@ const styles = () => ({
 });
 
 class Nav extends React.Component {
+  
   state = {
     open: false
   };
@@ -121,7 +123,7 @@ class Nav extends React.Component {
           <List>
             {["Home", "Vegetable", "Category", "My Garden"].map(
               (text, index) => (
-                <Link to="/">
+                <Link key={text} to="/">
                   <ListItem button key={text}>
                     <ListItemIcon>
                       {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -135,7 +137,7 @@ class Nav extends React.Component {
           <Divider />
           {["Settings", "About"].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>
+              <ListItemIcon key={index}>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
               <ListItemText primary={text} />
