@@ -43,7 +43,7 @@ class InnerBody extends Component  {
   async componentDidMount() {
     // load data from apiUrl
     try {
-      let vegetableList = await getVegatableList({numToFetch:3});
+      let vegetableList = await getVegatableList({numToFetch:10});
       this.setState({vegetableList: vegetableList});
     } catch (e) {
       console.log(`[getVegatableList] error :`, e.toString());

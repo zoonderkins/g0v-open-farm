@@ -21,9 +21,11 @@ const getVegatableList = async ({numToFetch=10}) => {
     } 
     // only list previous numToFetch items
     finalResult = finalResult.filter((item)=> {
-      return item.cover != null && item.avg_total_growing_days!= null && item.min_growing_temperature!= null;
+      return item.cover != null && item.avg_total_growing_days!= null && item.min_growing_temperature!= null
+      &&item.height!=null && item.max_pH!=null && item.min_pH!=null && item.variety!=null;
     });
     finalResult = finalResult.slice(0, numToFetch);
+    console.log(finalResult);
     return finalResult;
   } catch (e) {
     throw e;

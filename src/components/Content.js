@@ -48,7 +48,8 @@ const styles = {
     left: "5px"
   }
 };
-
+const showList = ["avg_total_growing_days" ,"min_growing_temperature" 
+  ,"height" , "max_pH" , "min_pH" , "variety"];
 class Content extends Component {
   constructor(props){
     super(props);
@@ -58,6 +59,7 @@ class Content extends Component {
       "vegatable": vegatable
     };
   }
+
   render() {
     const {classes} = this.props;
     const {vegatable} = this.state;
@@ -70,7 +72,7 @@ class Content extends Component {
           alt="Pumpkin"
           className={classes.media}
           image={`${vegatable.cover}`}
-          title="Pumpkin"
+          title={`${vegatable.common_names}`}
         />
         <Link to="/page">
           <IconButton className={classes.back}>
@@ -85,10 +87,10 @@ class Content extends Component {
           />
         </Fab>
         <div className={classes.wrap}>
-          {[...Array(12)].map((x, i) => (
+          {showList.map((x, i) => (
             <Card key={i} className={classes.card}>
               <CardActionArea>
-                <Link to="/aa">
+                <Link to={`/${x}`}>
                   <CardContent>
                     <Typography component="h1">
                       <img
@@ -97,7 +99,7 @@ class Content extends Component {
                       />
                     </Typography>
                     <Typography component="p" style={{ textAlign: "center" }}>
-                      {`${vegatable.common_names_zh}`}
+                      {`${vegatable[`${x}`]}`}
                     </Typography>
                   </CardContent>
                 </Link>
