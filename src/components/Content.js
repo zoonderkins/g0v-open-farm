@@ -49,7 +49,14 @@ const styles = {
   }
 };
 const showList = ["avg_total_growing_days" ,"min_growing_temperature" 
-  ,"height" , "max_pH" , "min_pH" , "variety"];
+  ,"height" , "min_pH" , "max_pH" , "variety"];
+const icons = ["https://static.thenounproject.com/png/81677-200.png",
+"https://static.thenounproject.com/png/1979336-200.png",
+"https://static.thenounproject.com/png/434088-200.png",
+"https://static.thenounproject.com/png/1882074-200.png",
+"https://static.thenounproject.com/png/1118764-200.png" , 
+"https://static.thenounproject.com/png/61962-200.png"];
+const units = ["days", "\u2103", "cm", "ph", "ph", ""];
 class Content extends Component {
   constructor(props){
     super(props);
@@ -95,11 +102,11 @@ class Content extends Component {
                     <Typography component="h1">
                       <img
                         className={classes.contentImg}
-                        src="https://static.thenounproject.com/png/61962-200.png"
+                        src={`${icons[i]}`}
                       />
                     </Typography>
                     <Typography component="p" style={{ textAlign: "center" }}>
-                      {`${vegatable[`${x}`]}`}
+                      {`${vegatable[`${x}`]} ${units[i]}`}
                     </Typography>
                   </CardContent>
                 </Link>

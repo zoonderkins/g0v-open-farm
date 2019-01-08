@@ -5,7 +5,8 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
-import { getVegatableList } from "../util/apiLogic";
+import {getVegatableList} from '../util/apiLogic';
+import { observer } from "mobx-react";
 const styles = {
   root: {
     overflow: "hidden",
@@ -36,23 +37,27 @@ const styles = {
 class InnerBody extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      vegetableList: []
-    };
+    console.log(this.props.store.list);
+    // this.state = {
+    //   "vegetableList": []
+    // };
   }
   async componentDidMount() {
     // load data from apiUrl
     try {
-      let vegetableList = await getVegatableList({ numToFetch: 10 });
-      this.setState({ vegetableList: vegetableList });
+      let vegetableList = await getVegatableList({numToFetch:10});
+      // this.setState({vegetableList: vegetableList});
+      this.props.store.updateList(vegetableList);
+      console.log(`[list]`, this.props.store.list);
     } catch (e) {
       console.log(`[getVegatableList] error :`, e.toString());
     }
   }
   renderVegatables = () => {
-    let { vegetableList } = this.state;
-    const { classes } = this.props;
-    return vegetableList.map((ctx, index) => (
+    // let {vegetableList} = this.state;
+    let {list} = this.props.store;
+    const {classes} = this.props;
+    return (list.map((ctx, index) => (
       <Grid key={index} item xs={3} className={classes.gridMargin}>
         <Paper className={classes.root}>
           <Link to={{ pathname: "/content", state: { ...ctx } }}>
@@ -63,10 +68,11 @@ class InnerBody extends Component {
           </Link>
         </Paper>
       </Grid>
-    ));
+    )))
   };
   render() {
-    const { classes } = this.props;
+    const { classes, store } = this.props;
+    console.log(store.list);
     return (
       <div>
         <Grid
@@ -102,5 +108,5 @@ class InnerBody extends Component {
 InnerBody.propTypes = {
   classes: PropTypes.object.isRequired
 };
-
+InnerBody = observer(InnerBody);
 export default withStyles(styles)(InnerBody);
