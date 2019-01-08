@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Nav from "./Nav";
 
 import InnerBody from "./InnerBody";
@@ -14,14 +14,14 @@ class Page extends Component {
 
   render() {
     this.props.store.clearList();
-    console.log('[12313]',this.props.store.list);
+    console.log("[12313]", this.props.store.list);
     return (
       <div>
-          <Nav />
-          <InnerBody store={this.props.store}/>
+        <Nav />
+        <InnerBody store={this.props.store} />
       </div>
     );
   }
-} 
+}
 
 export default Page;

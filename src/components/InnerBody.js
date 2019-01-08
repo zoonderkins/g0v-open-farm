@@ -5,32 +5,40 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
-import {getVegatableList} from '../util/apiLogic';
+import { getVegatableList } from "../util/apiLogic";
 import { observer } from "mobx-react";
 const styles = {
   root: {
+    padding: "1%",
+    margin: "5px",
     overflow: "hidden",
-    margin: "10%",
-    width: "100%"
+    // position: "relative",
+    display: "inlineblock",
+    maxHeight: "50vh",
+    width: "auto"
+  },
+  wrap: {
+    display: "flex",
+    flexDirection: "row",
+    margin: "2%",
+    padding: "10px",
+    height: "auto",
+    flexWrap: "wrap"
   },
   gridMargin: {
-    marginLeft: "10px",
-    marginRight: "10px",
-    marginTop: "20px",
-    maxWidth: 380,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
+    overflow: "hidden"
+    // display: "flex",
+    // justifyContent: "center",
+    // alignItems: "center"
   },
   img: {
-    margin: "0",
-    padding: "10px",
-    width: "auto",
-    maxHeight: "180px",
+    maxHeight: "48vh",
+    maxWidth: "100%",
     alignSelf: "center"
   },
   p: {
-    textAlign: "center"
+    textAlign: "center",
+    padding: "3%"
   }
 };
 
@@ -45,7 +53,7 @@ class InnerBody extends Component {
   async componentDidMount() {
     // load data from apiUrl
     try {
-      let vegetableList = await getVegatableList({numToFetch:10});
+      let vegetableList = await getVegatableList({ numToFetch: 10 });
       // this.setState({vegetableList: vegetableList});
       this.props.store.updateList(vegetableList);
       console.log(`[list]`, this.props.store.list);
@@ -55,11 +63,11 @@ class InnerBody extends Component {
   }
   renderVegatables = () => {
     // let {vegetableList} = this.state;
-    let {list} = this.props.store;
-    const {classes} = this.props;
-    return (list.map((ctx, index) => (
-      <Grid key={index} item xs={3} className={classes.gridMargin}>
-        <Paper className={classes.root}>
+    let { list } = this.props.store;
+    const { classes } = this.props;
+    return list.map((ctx, index) => (
+      <Grid key={index} item xs={3} className={classes.root}>
+        <Paper>
           <Link to={{ pathname: "/content", state: { ...ctx } }}>
             <img className={classes.img} src={ctx.cover} />
             <Typography component="p" className={classes.p}>
@@ -68,7 +76,7 @@ class InnerBody extends Component {
           </Link>
         </Paper>
       </Grid>
-    )))
+    ));
   };
   render() {
     const { classes, store } = this.props;
@@ -82,7 +90,7 @@ class InnerBody extends Component {
           alignItems="center"
           justify="center"
         >
-          {this.renderVegatables()}
+          <div className={classes.wrap}>{this.renderVegatables()}</div>
           {/* <Grid item xs={3} className={classes.gridMargin}>
             <Paper className={classes.root} elevation={1}>
               <img className={classes.img} src={vegetablesImage.tomato} />

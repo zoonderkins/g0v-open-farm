@@ -20,10 +20,11 @@ import MailIcon from "@material-ui/icons/Mail";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import SubNav from "./SubNav";
-const drawerWidth = 200;
+
+const drawerWidth = 180;
 const styles = () => ({
   root: {
-    display: "flex"
+    // display: "flex"
   },
   appBar: {},
   appBarShift: {
@@ -63,7 +64,6 @@ const styles = () => ({
 });
 
 class Nav extends React.Component {
-  
   state = {
     open: false
   };
