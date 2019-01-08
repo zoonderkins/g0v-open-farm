@@ -67,7 +67,7 @@ class InnerBody extends Component {
       console.log(finalResult);
       this.setState({ vegetableList: finalResult });
     } catch (e) {
-      console.log(e);
+      console.log(`[getVegatableList] error :`, e.toString());
     }
   }
   renderVegatables = () => {
