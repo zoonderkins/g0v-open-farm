@@ -63,6 +63,7 @@ const styles = () => ({
 });
 
 class Nav extends React.Component {
+  
   state = {
     open: false
   };
@@ -121,7 +122,7 @@ class Nav extends React.Component {
           <List>
             {["Home", "Vegetable", "Category", "My Garden"].map(
               (text, index) => (
-                <Link to="/">
+                <Link key={text} to="/">
                   <ListItem button key={text}>
                     <ListItemIcon>
                       {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -135,7 +136,7 @@ class Nav extends React.Component {
           <Divider />
           {["Settings", "About"].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>
+              <ListItemIcon key={index}>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
               <ListItemText primary={text} />
