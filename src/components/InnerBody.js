@@ -1,11 +1,11 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
-const apiUrl = `https://api.ohf.ag/testing/crop_chart?fbclid=IwAR0trukeUF9xjv-duRNXbD9Bx35qIBJZSZBmaprrGdFYiZY8IR9BdsKKj8c`;
+const apiUrl = `https://api.ohf.ag/testing/crop_chart`;
 const prevFetchNum = 10;
 const styles = {
   root: {
@@ -34,11 +34,11 @@ const styles = {
   }
 };
 
-class InnerBody extends Component  {
+class InnerBody extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      "vegetableList": []
+      vegetableList: []
     };
   }
   async componentDidMount() {
@@ -56,24 +56,27 @@ class InnerBody extends Component  {
         finalResult = await result.text();
         throw new Error(finalResult);
       } // only list previous 3 items
-      finalResult = finalResult.filter((item)=> {
-        return item.cover != null && item.avg_total_growing_days!= null && item.min_growing_temperature!= null;
+      finalResult = finalResult.filter(item => {
+        return (
+          item.cover != null &&
+          item.avg_total_growing_days != null &&
+          item.min_growing_temperature != null
+        );
       });
-      finalResult = finalResult.slice(0,prevFetchNum);
+      finalResult = finalResult.slice(0, prevFetchNum);
       console.log(finalResult);
-      this.setState({vegetableList: finalResult});
+      this.setState({ vegetableList: finalResult });
     } catch (e) {
       console.log(e);
     }
-  
   }
   renderVegatables = () => {
-    let {vegetableList} = this.state;
-    const {classes} = this.props;
-    return (vegetableList.map((ctx, index) => (
+    let { vegetableList } = this.state;
+    const { classes } = this.props;
+    return vegetableList.map((ctx, index) => (
       <Grid key={index} item xs={3} className={classes.gridMargin}>
         <Paper className={classes.root}>
-          <Link to={{pathname:"/content", state:{...ctx}}}>
+          <Link to={{ pathname: "/content", state: { ...ctx } }}>
             <img className={classes.img} src={ctx.cover} />
             <Typography component="p" className={classes.p}>
               {ctx.common_names_zh}
@@ -81,8 +84,8 @@ class InnerBody extends Component  {
           </Link>
         </Paper>
       </Grid>
-    )));
-  }
+    ));
+  };
   render() {
     const { classes } = this.props;
     return (
