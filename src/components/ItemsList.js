@@ -8,7 +8,6 @@ import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import Nav from "./Nav";
 import { getVegatableList } from "../util/apiLogic";
-import { observer } from "mobx-react";
 
 const styles = () => ({
   root: {
@@ -17,16 +16,11 @@ const styles = () => ({
   }
 });
 
-class ItemsList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
+class ItemsList extends Component { 
   async componentDidMount() {
     // load data from apiUrl
     try {
       let vegetableList = await getVegatableList({ numToFetch: 10 });
-      // this.setState({vegetableList: vegetableList});
       this.props.store.updateList(vegetableList);
       console.log(`[list]`, this.props.store.list);
     } catch (e) {
@@ -36,9 +30,10 @@ class ItemsList extends Component {
 
   renderList = () => {
     const { classes } = this.props;
-    let { list } = this.props.store;
+    let { itemList } = this.props.store.state;
+    console.log(itemList)
 
-    return list.map((ctx, index) => (
+    return itemList.map((ctx, index) => (
       <List className={classes.root}>
         <ListItem alignItems="flex-start">
           <Avatar src={ctx.cover} />
@@ -62,9 +57,6 @@ class ItemsList extends Component {
     ));
   };
   render() {
-    const { classes, store } = this.props;
-    console.log(store.list);
-
     return (
       <React.Fragment>
         <Nav />
@@ -77,5 +69,5 @@ class ItemsList extends Component {
 ItemsList.propTypes = {
   classes: PropTypes.object.isRequired
 };
-ItemsList = observer(ItemsList);
+
 export default withStyles(styles)(ItemsList);

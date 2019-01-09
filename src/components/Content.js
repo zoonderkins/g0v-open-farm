@@ -81,7 +81,7 @@ class Content extends Component {
           image={`${vegatable.cover}`}
           title={`${vegatable.common_names}`}
         />
-        <Link to="/page">
+        <Link to="/">
           <IconButton className={classes.back}>
             <ChevronLeftIcon style={{ color: "white", fontWeight: "bold" }} />
           </IconButton>

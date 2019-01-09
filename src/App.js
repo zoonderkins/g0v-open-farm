@@ -4,10 +4,8 @@ import Home from "./components/Home";
 import Category from "./components/Category";
 import Content from "./components/Content";
 import Vegetables from "./components/ItemsList";
-import { observer } from "mobx-react";
-import Garden from "./stores/store";
-
-const appStore = new Garden();
+import {Provider, Subscribe} from "unstated";
+import GardenContainer from './containers/gardenContainer';
 const Error = () => (
   <div>
     <h1>HTTP Error 404, Page not found</h1>
@@ -19,25 +17,31 @@ class App extends Component {
   };
   render() {
     return (
-      <Router onChange={this.handleRoute}>
-        <div>
-          <Switch>
-            <Route path="/" component={Home} exact />
-            <Route
-              path="/category"
-              render={props => <Category {...props} store={appStore} />}
-            />
-            <Route path="/content" component={Content} />
-            <Route
-              path="/vegetables"
-              render={props => <Vegetables {...props} store={appStore} />}
-            />
-            <Route exact component={Error} />
-          </Switch>
-        </div>
-      </Router>
+      <Provider>
+        <Subscribe to={[GardenContainer]}>
+        {container=>
+          (<Router onChange={this.handleRoute}>
+            <div>
+              <Switch>
+                <Route path="/" component={Home} exact />
+                <Route
+                  path="/category"
+                  render={props => <Category {...props} store={container} />}
+                />
+                <Route path="/content" component={Content} />
+                <Route
+                  path="/vegetables"
+                  render={props => <Vegetables {...props} store={container} />}
+                />
+                <Route exact component={Error} />
+              </Switch>
+            </div>
+          </Router>)
+        }
+        </Subscribe>
+      </Provider>
     );
   }
 }
-App = observer(App);
+// App = observer(App);
 export default App;

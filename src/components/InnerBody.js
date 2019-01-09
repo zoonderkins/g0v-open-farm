@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import SubNav from "./SubNav";
 import { getVegatableList } from "../util/apiLogic";
-import { observer } from "mobx-react";
+// import { observer } from "mobx-react";
 const styles = {
   root: {
     padding: "1%",
@@ -46,7 +46,7 @@ const styles = {
 class InnerBody extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.store.list);
+    console.log(this.props.store.state.itemList);
     // this.state = {
     //   "vegetableList": []
     // };
@@ -57,16 +57,16 @@ class InnerBody extends Component {
       let vegetableList = await getVegatableList({ numToFetch: 10 });
       // this.setState({vegetableList: vegetableList});
       this.props.store.updateList(vegetableList);
-      console.log(`[list]`, this.props.store.list);
+      console.log(`[list]`, this.props.store.state.itemList);
     } catch (e) {
       console.log(`[getVegatableList] error :`, e.toString());
     }
   }
   renderVegatables = () => {
     // let {vegetableList} = this.state;
-    let { list } = this.props.store;
+    let { itemList } = this.props.store.state;
     const { classes } = this.props;
-    return list.map((ctx, index) => (
+    return itemList.map((ctx, index) => (
       <Grid key={index} item xs={3} className={classes.root}>
         <Paper>
           <Link to={{ pathname: "/content", state: { ...ctx } }}>
@@ -81,7 +81,7 @@ class InnerBody extends Component {
   };
   render() {
     const { classes, store } = this.props;
-    console.log(store.list);
+    console.log(store.state.itemList);
     return (
       <React.Fragment>
         <SubNav />
@@ -118,5 +118,5 @@ class InnerBody extends Component {
 InnerBody.propTypes = {
   classes: PropTypes.object.isRequired
 };
-InnerBody = observer(InnerBody);
+// InnerBody = observer(InnerBody);
 export default withStyles(styles)(InnerBody);
