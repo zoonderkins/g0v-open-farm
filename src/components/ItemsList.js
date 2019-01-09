@@ -28,7 +28,7 @@ class ItemsList extends Component {
       let vegetableList = await getVegatableList({ numToFetch: 10 });
       // this.setState({vegetableList: vegetableList});
       this.props.store.updateList(vegetableList);
-      console.log(`[list]`, this.props.store.list);
+      console.log(`[list]`, this.props.store.itemlist);
     } catch (e) {
       console.log(`[getVegatableList] error :`, e.toString());
     }
@@ -36,9 +36,9 @@ class ItemsList extends Component {
 
   renderList = () => {
     const { classes } = this.props;
-    let { list } = this.props.store;
+    let { itemlist } = this.props.store;
 
-    return list.map((ctx, index) => (
+    return itemlist.map((ctx, index) => (
       <List className={classes.root}>
         <ListItem alignItems="flex-start">
           <Avatar src={ctx.cover} />
