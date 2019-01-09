@@ -8,7 +8,6 @@ import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import Nav from "./Nav";
 import { getVegatableList } from "../util/apiLogic";
-import { observer } from "mobx-react";
 
 const styles = () => ({
   root: {
@@ -70,5 +69,4 @@ class ItemsList extends Component {
 ItemsList.propTypes = {
   classes: PropTypes.object.isRequired
 };
-ItemsList = observer(ItemsList);
 export default withStyles(styles)(ItemsList);
