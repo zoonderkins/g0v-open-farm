@@ -10,28 +10,14 @@ import { getVegatableList } from "../util/apiLogic";
 import { observer } from "mobx-react";
 const styles = {
   root: {
-    padding: "1%",
-    margin: "2%",
-    maxHeight: "50vh",
+    padding: "2%",
+    margin: "3%",
     width: "auto",
     display: "flex",
     flexGrow: 1
   },
-  // wrap: {
-  //   display: "flex",
-  //   flexDirection: "row",
-  //   padding: "10px",
-  //   height: "auto",
-  //   flexWrap: "wrap"
-  // },
-  gridMargin: {
-    overflow: "hidden"
-    // display: "flex",
-    // justifyContent: "center",
-    // alignItems: "center"
-  },
   img: {
-    maxHeight: "48vh",
+    maxHeigh: "90%",
     maxWidth: "100%",
     alignSelf: "center"
   },
@@ -58,7 +44,7 @@ class InnerBody extends Component {
     let { itemlist } = this.props.store;
     const { classes } = this.props;
     return itemlist.map((ctx, index) => (
-      <Grid item xs={4} className={classes.root} key={index}>
+      <Grid item xs={6} sm={4} md={3} key={index}>
         <Paper>
           <Link to={{ pathname: "/content", state: { ...ctx } }}>
             <img
@@ -79,25 +65,8 @@ class InnerBody extends Component {
     return (
       <React.Fragment>
         <SubNav />
-
         <Grid container spacing={8} className={classes.root}>
           {this.renderVegatables()}
-          {/* <Grid item xs={3} className={classes.gridMargin}>
-            <Paper className={classes.root} elevation={1}>
-              <img className={classes.img} src={vegetablesImage.tomato} />
-              <Typography component="p" className={classes.p}>
-                This is a tomato
-              </Typography>
-            </Paper>
-          </Grid>
-          <Grid item xs={3} className={classes.gridMargin}>
-            <Paper className={classes.root} elevation={1}>
-              <img className={classes.img} src={vegetablesImage.tomato} />
-              <Typography component="p" className={classes.p}>
-                This is a tomato
-              </Typography>
-            </Paper>
-          </Grid>*/}
         </Grid>
       </React.Fragment>
     );

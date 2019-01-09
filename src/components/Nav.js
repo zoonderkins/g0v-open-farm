@@ -20,7 +20,7 @@ import Avatar from "@material-ui/core/Avatar";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
-const drawerWidth = 180;
+const drawerWidth = 200;
 const styles = () => ({
   root: {
     // display: "flex"
@@ -140,13 +140,14 @@ class Nav extends Component {
           <Divider />
 
           {/* {Setting and About Icon} */}
-
-          <ListItem button>
-            <Avatar>
-              <Icon>device_unknown</Icon>
-            </Avatar>
-            <ListItemText primary="About" />
-          </ListItem>
+          <Link to="/about">
+            <ListItem button>
+              <Avatar>
+                <Icon>device_unknown</Icon>
+              </Avatar>
+              <ListItemText primary="About" />
+            </ListItem>
+          </Link>
         </Drawer>
       </div>
     );
