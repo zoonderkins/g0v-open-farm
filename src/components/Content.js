@@ -76,12 +76,12 @@ class Content extends Component {
       <div className={classes.root}>
         <CardMedia
           component="img"
-          alt="Pumpkin"
+          alt={`${vegatable.common_names}`}
           className={classes.media}
           image={`${vegatable.cover}`}
           title={`${vegatable.common_names}`}
         />
-        <Link to="/page">
+        <Link to="/category">
           <IconButton className={classes.back}>
             <ChevronLeftIcon style={{ color: "white", fontWeight: "bold" }} />
           </IconButton>

@@ -7,14 +7,9 @@ import Garden from "../stores/store";
 // const appStore = new Garden();
 
 class Category extends Component {
-  constructor(props) {
-    super(props);
-    // console.log(this.props.store);
-  }
-
   render() {
-    this.props.store.clearList();
-    console.log("[12313]", this.props.store.list);
+    // this.props.store.clearList();
+    console.log("[list]", this.props.store.list);
     return (
       <div>
         <Nav />

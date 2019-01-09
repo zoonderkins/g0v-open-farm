@@ -57,16 +57,16 @@ class InnerBody extends Component {
       let vegetableList = await getVegatableList({ numToFetch: 10 });
       // this.setState({vegetableList: vegetableList});
       this.props.store.updateList(vegetableList);
-      console.log(`[list]`, this.props.store.list);
+      console.log(`[itemlist]`, this.props.store.itemlist);
     } catch (e) {
       console.log(`[getVegatableList] error :`, e.toString());
     }
   }
   renderVegatables = () => {
     // let {vegetableList} = this.state;
-    let { list } = this.props.store;
+    let { itemlist } = this.props.store;
     const { classes } = this.props;
-    return list.map((ctx, index) => (
+    return itemlist.map((ctx, index) => (
       <Grid key={index} item xs={3} className={classes.root}>
         <Paper>
           <Link to={{ pathname: "/content", state: { ...ctx } }}>
@@ -81,7 +81,7 @@ class InnerBody extends Component {
   };
   render() {
     const { classes, store } = this.props;
-    console.log(store.list);
+    // console.log(store.itemlist);
     return (
       <React.Fragment>
         <SubNav />

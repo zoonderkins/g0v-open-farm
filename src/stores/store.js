@@ -10,7 +10,7 @@ class Garden {
     this.vegatableList = [...inputList];
   }
 
-  get list () {
+  get itemlist () {
     return this.vegatableList.map(item=>toJS(item));
   }
 
@@ -20,7 +20,7 @@ decorate(Garden, {
   vegatableList: observable,
   clearList: action,
   updateList: action,
-  list: computed
+  itemlist: computed
 });
 
 
