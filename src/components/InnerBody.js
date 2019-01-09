@@ -46,7 +46,7 @@ const styles = {
 class InnerBody extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.store.list);
+    console.log(this.props.store.itemlist);
     // this.state = {
     //   "vegetableList": []
     // };

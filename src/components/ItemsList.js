@@ -63,7 +63,7 @@ class ItemsList extends Component {
   };
   render() {
     const { classes, store } = this.props;
-    console.log(store.list);
+    console.log(store.itemlist);
 
     return (
       <React.Fragment>
