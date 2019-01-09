@@ -5,7 +5,7 @@ const Home = () => (
   <div>
     <section
       className="menu cid-qxiabk0CYF"
-      once="menu"
+      // once="menu"
       id="menu1-2y"
       data-rv-view={1976}
     >
@@ -99,7 +99,7 @@ const Home = () => (
     </section>
 
     <section
-      once
+      // once
       className="cid-qxLmycUJ9t"
       id="footer6-3p"
       data-rv-view={2028}

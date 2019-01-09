@@ -6,7 +6,7 @@ import Content from "./components/Content";
 import Vegetables from "./components/ItemsList";
 import { observer } from "mobx-react";
 import Garden from "./stores/store";
-
+// set global store
 const appStore = new Garden();
 const Error = () => (
   <div>
