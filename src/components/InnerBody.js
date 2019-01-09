@@ -13,7 +13,6 @@ const styles = {
     padding: "1%",
     margin: "5px",
     overflow: "hidden",
-    // position: "relative",
     display: "inlineblock",
     maxHeight: "50vh",
     width: "auto"
@@ -44,13 +43,6 @@ const styles = {
 };
 
 class InnerBody extends Component {
-  constructor(props) {
-    super(props);
-    console.log(this.props.store.itemlist);
-    // this.state = {
-    //   "vegetableList": []
-    // };
-  }
   async componentDidMount() {
     // load data from apiUrl
     try {
@@ -70,7 +62,7 @@ class InnerBody extends Component {
       <Grid key={index} item xs={3} className={classes.root}>
         <Paper>
           <Link to={{ pathname: "/content", state: { ...ctx } }}>
-            <img className={classes.img} src={ctx.cover} />
+            <img className={classes.img} src={ctx.cover} alt={`${ctx.common_names_zh}`}/>
             <Typography component="p" className={classes.p}>
               {ctx.common_names_zh}
             </Typography>
@@ -80,8 +72,7 @@ class InnerBody extends Component {
     ));
   };
   render() {
-    const { classes, store } = this.props;
-    // console.log(store.itemlist);
+    const { classes } = this.props;
     return (
       <React.Fragment>
         <SubNav />

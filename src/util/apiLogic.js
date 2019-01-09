@@ -25,7 +25,7 @@ const getVegatableList = async ({numToFetch=10}) => {
       &&item.height!=null && item.max_pH!=null && item.min_pH!=null && item.variety!=null;
     });
     finalResult = finalResult.slice(0, numToFetch);
-    console.log(finalResult);
+    console.log(`[getVegatableList] api data:`,finalResult);
     return finalResult;
   } catch (e) {
     throw e;

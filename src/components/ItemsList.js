@@ -18,17 +18,12 @@ const styles = () => ({
 });
 
 class ItemsList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   async componentDidMount() {
     // load data from apiUrl
     try {
       let vegetableList = await getVegatableList({ numToFetch: 10 });
-      // this.setState({vegetableList: vegetableList});
       this.props.store.updateList(vegetableList);
-      console.log(`[list]`, this.props.store.itemlist);
+      console.log(`[itemlist]`, this.props.store.itemlist);
     } catch (e) {
       console.log(`[getVegatableList] error :`, e.toString());
     }
@@ -39,7 +34,7 @@ class ItemsList extends Component {
     let { itemlist } = this.props.store;
 
     return itemlist.map((ctx, index) => (
-      <List className={classes.root}>
+      <List key={index} className={classes.root}>
         <ListItem alignItems="flex-start">
           <Avatar src={ctx.cover} />
 
@@ -62,8 +57,6 @@ class ItemsList extends Component {
     ));
   };
   render() {
-    const { classes, store } = this.props;
-    console.log(store.itemlist);
 
     return (
       <React.Fragment>

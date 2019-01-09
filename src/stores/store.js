@@ -14,9 +14,9 @@ class Garden {
   /**
    * @description action to update List
    */
-  updateList(inputList) {
-    console.log(`inputList`, inputList);
-    this.vegatableList = [...inputList];
+  updateList(updatedList) {
+    console.log(`[Garden] store updatedList:`, updatedList);
+    this.vegatableList = [...updatedList];
   }
   /**
    * @description getter to access data 
