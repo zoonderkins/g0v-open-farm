@@ -6,7 +6,7 @@ import Garden from "../stores/store";
 // import { Provider } from 'mobx-react';
 // const appStore = new Garden();
 
-class Page extends Component {
+class Category extends Component {
   constructor(props) {
     super(props);
     // console.log(this.props.store);
@@ -24,4 +24,4 @@ class Page extends Component {
   }
 }
 
-export default Page;
+export default Category;

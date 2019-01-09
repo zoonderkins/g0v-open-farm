@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
-import Page from "./components/Page";
+import Category from "./components/Category";
 import Content from "./components/Content";
+import Vegetables from "./components/ItemsList";
 import { observer } from "mobx-react";
 import Garden from "./stores/store";
+
 const appStore = new Garden();
 const Error = () => (
   <div>
@@ -21,8 +23,15 @@ class App extends Component {
         <div>
           <Switch>
             <Route path="/" component={Home} exact />
-            <Route path="/page" render={(props)=><Page {...props} store={appStore}/>} />
+            <Route
+              path="/category"
+              render={props => <Category {...props} store={appStore} />}
+            />
             <Route path="/content" component={Content} />
+            <Route
+              path="/vegetables"
+              render={props => <Vegetables {...props} store={appStore} />}
+            />
             <Route exact component={Error} />
           </Switch>
         </div>

@@ -85,11 +85,11 @@ const Home = () => (
             <ul className="nav nav-tabs" role="tablist">
               <li className="nav-item" id="t1">
                 <Link
-                  to="/page"
+                  to="/category"
                   style={{ fontSize: "1.6rem", fontWeight: 700 }}
                   className="nav-link mbr-fonts-style active display-7"
                 >
-                  資料庫查詢
+                  Category
                 </Link>
               </li>
             </ul>

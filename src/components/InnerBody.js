@@ -5,6 +5,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
+import SubNav from "./SubNav";
 import { getVegatableList } from "../util/apiLogic";
 import { observer } from "mobx-react";
 const styles = {
@@ -82,7 +83,8 @@ class InnerBody extends Component {
     const { classes, store } = this.props;
     console.log(store.list);
     return (
-      <div>
+      <React.Fragment>
+        <SubNav />
         <Grid
           container
           spacing={24}
@@ -108,7 +110,7 @@ class InnerBody extends Component {
             </Paper>
           </Grid>*/}
         </Grid>
-      </div>
+      </React.Fragment>
     );
   }
 }

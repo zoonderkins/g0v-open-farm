@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import classNames from "classnames";
@@ -15,11 +15,10 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+import Icon from "@material-ui/core/Icon";
+import Avatar from "@material-ui/core/Avatar";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import SubNav from "./SubNav";
 
 const drawerWidth = 180;
 const styles = () => ({
@@ -63,7 +62,7 @@ const styles = () => ({
   }
 });
 
-class Nav extends React.Component {
+class Nav extends Component {
   state = {
     open: false
   };
@@ -74,13 +73,33 @@ class Nav extends React.Component {
   handleDrawerClose = () => {
     this.setState({ open: false });
   };
+
+  renderList = () => {
+    return ["Home", "Category", "Vegetables"].map((text, index) => {
+      let newText = text.toLowerCase();
+
+      return (
+        <Link key={text} to={newText === "home" ? "/" : `/${newText}`}>
+          <ListItem button key={text}>
+            <Avatar>
+              {text === "Home" && <Icon> home </Icon>}
+              {text === "Vegetables" && <Icon>list</Icon>}
+              {text === "Category" && <Icon> category </Icon>}
+            </Avatar>
+            <ListItemText primary={text} />
+          </ListItem>
+        </Link>
+      );
+    });
+  };
+
   render() {
     const { classes } = this.props;
     const { open } = this.state;
 
     return (
       <div className={classes.root}>
-        {/* <CssBaseline /> */}
+        <CssBaseline />
         <AppBar
           position="static"
           className={classNames(classes.appBar, {
@@ -97,11 +116,9 @@ class Nav extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit">
-              Category
-            </Typography>
+            <Typography variant="h6" color="inherit" />
           </Toolbar>
-          <SubNav />
+          {/* <SubNav /> */}
         </AppBar>
 
         <Drawer
@@ -119,29 +136,17 @@ class Nav extends React.Component {
             </IconButton>
           </div>
           <Divider />
-          <List>
-            {["Home", "Vegetable", "Category", "My Garden"].map(
-              (text, index) => (
-                <Link key={text} to="/">
-                  <ListItem button key={text}>
-                    <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItem>
-                </Link>
-              )
-            )}
-          </List>
+          <List>{this.renderList()}</List>
           <Divider />
-          {["Settings", "About"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon key={index}>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+
+          {/* {Setting and About Icon} */}
+
+          <ListItem button>
+            <Avatar>
+              <Icon>device_unknown</Icon>
+            </Avatar>
+            <ListItemText primary="About" />
+          </ListItem>
         </Drawer>
       </div>
     );
