@@ -11,20 +11,19 @@ import { observer } from "mobx-react";
 const styles = {
   root: {
     padding: "1%",
-    margin: "5px",
-    overflow: "hidden",
-    display: "inlineblock",
-    maxHeight: "50vh",
-    width: "auto"
-  },
-  wrap: {
-    display: "flex",
-    flexDirection: "row",
     margin: "2%",
-    padding: "10px",
-    height: "auto",
-    flexWrap: "wrap"
+    maxHeight: "50vh",
+    width: "auto",
+    display: "flex",
+    flexGrow: 1
   },
+  // wrap: {
+  //   display: "flex",
+  //   flexDirection: "row",
+  //   padding: "10px",
+  //   height: "auto",
+  //   flexWrap: "wrap"
+  // },
   gridMargin: {
     overflow: "hidden"
     // display: "flex",
@@ -59,10 +58,14 @@ class InnerBody extends Component {
     let { itemlist } = this.props.store;
     const { classes } = this.props;
     return itemlist.map((ctx, index) => (
-      <Grid key={index} item xs={3} className={classes.root}>
+      <Grid item xs={4} className={classes.root} key={index}>
         <Paper>
           <Link to={{ pathname: "/content", state: { ...ctx } }}>
-            <img className={classes.img} src={ctx.cover} alt={`${ctx.common_names_zh}`}/>
+            <img
+              className={classes.img}
+              src={ctx.cover}
+              alt={`${ctx.common_names_zh}`}
+            />
             <Typography component="p" className={classes.p}>
               {ctx.common_names_zh}
             </Typography>
@@ -76,14 +79,9 @@ class InnerBody extends Component {
     return (
       <React.Fragment>
         <SubNav />
-        <Grid
-          container
-          spacing={24}
-          direction="row"
-          alignItems="center"
-          justify="center"
-        >
-          <div className={classes.wrap}>{this.renderVegatables()}</div>
+
+        <Grid container spacing={8} className={classes.root}>
+          {this.renderVegatables()}
           {/* <Grid item xs={3} className={classes.gridMargin}>
             <Paper className={classes.root} elevation={1}>
               <img className={classes.img} src={vegetablesImage.tomato} />

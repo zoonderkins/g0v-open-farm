@@ -4,8 +4,10 @@ import Home from "./components/Home";
 import Category from "./components/Category";
 import Content from "./components/Content";
 import Vegetables from "./components/ItemsList";
+import About from "./components/About";
 import { observer } from "mobx-react";
 import Garden from "./stores/store";
+
 // set global store
 const appStore = new Garden();
 const Error = () => (
@@ -32,6 +34,7 @@ class App extends Component {
               path="/vegetables"
               render={props => <Vegetables {...props} store={appStore} />}
             />
+            <Route path="/about" component={About} />
             <Route exact component={Error} />
           </Switch>
         </div>
