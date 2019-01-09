@@ -76,21 +76,22 @@ class Content extends Component {
       <div className={classes.root}>
         <CardMedia
           component="img"
-          alt="Pumpkin"
+          alt={`${vegatable.common_names}`}
           className={classes.media}
           image={`${vegatable.cover}`}
           title={`${vegatable.common_names}`}
         />
-        <Link to="/page">
+        <Link to="/category">
           <IconButton className={classes.back}>
             <ChevronLeftIcon style={{ color: "white", fontWeight: "bold" }} />
           </IconButton>
         </Link>
 
-        <Fab color="brown" className={classes.fab}>
+        <Fab color="default" className={classes.fab}>
           <img
             style={{ height: "40px" }}
             src="https://static.thenounproject.com/png/61962-200.png"
+            alt={"default"}
           />
         </Fab>
         <div className={classes.wrap}>
@@ -103,6 +104,7 @@ class Content extends Component {
                       <img
                         className={classes.contentImg}
                         src={`${icons[i]}`}
+                        alt={`${x}`}
                       />
                     </Typography>
                     <Typography component="p" style={{ textAlign: "center" }}>

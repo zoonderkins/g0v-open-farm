@@ -13,7 +13,7 @@ import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
+// import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Icon from "@material-ui/core/Icon";
 import Avatar from "@material-ui/core/Avatar";
@@ -108,7 +108,7 @@ class Nav extends Component {
         >
           <Toolbar disableGutters={!open}>
             <IconButton
-              className={classes.menuButton}
+              // className={classes.menuButton}
               color="inherit"
               aria-label="Menu"
               onClick={this.handleDrawerOpen}
