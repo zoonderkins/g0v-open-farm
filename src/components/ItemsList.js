@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -33,30 +34,31 @@ class ItemsList extends Component {
     let { itemlist } = this.props.store;
 
     return itemlist.map((ctx, index) => (
-      <List key={index} className={classes.root}>
-        <ListItem alignItems="flex-start">
-          <Avatar src={ctx.cover} />
+      <Link to={{ pathname: "/content", state: { ...ctx } }}>
+        <List key={index} className={classes.root}>
+          <ListItem alignItems="flex-start">
+            <Avatar src={ctx.cover} />
 
-          <ListItemText
-            primary={ctx.common_names}
-            secondary={
-              <React.Fragment>
-                <Typography
-                  component="span"
-                  className={classes.inline}
-                  color="textPrimary"
-                >
-                  {ctx.common_names_zh}
-                </Typography>
-              </React.Fragment>
-            }
-          />
-        </ListItem>
-      </List>
+            <ListItemText
+              primary={ctx.common_names}
+              secondary={
+                <React.Fragment>
+                  <Typography
+                    component="span"
+                    className={classes.inline}
+                    color="textPrimary"
+                  >
+                    {ctx.common_names_zh}
+                  </Typography>
+                </React.Fragment>
+              }
+            />
+          </ListItem>
+        </List>
+      </Link>
     ));
   };
   render() {
-
     return (
       <React.Fragment>
         <Nav />
