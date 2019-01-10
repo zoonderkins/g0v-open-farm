@@ -12,25 +12,18 @@ class Home extends React.Component {
     // document.title = this.props.store.title;
     return (
       <div>
-        <section
-          className="menu cid-qxiabk0CYF"
-          // once="menu"
-          id="menu1-2y"
-          data-rv-view={1976}
-        >
+        <section className="menu cid-qxiabk0CYF" id="menu1-2y">
           <nav className="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
-            <div className="menu-logo">
-              <div className="navbar-brand">
-                <span className="navbar-logo">
-                  <img
-                    src="http://azai.tari.gov.tw/assets/images/logo-615x127.png"
-                    alt="Mobirise"
-                    media-simple="true"
-                    style={{ height: "5rem" }}
-                  />
-                </span>
-                <span className="navbar-caption-wrap" />
-              </div>
+            <div className="navbar-brand">
+              <span className="navbar-logo">
+                <img
+                  src="https://raw.githubusercontent.com/wizardamigos/chapter-taipei/master/assets/wizard3.png"
+                  alt="Mobirise"
+                  media-simple="true"
+                  style={{ height: "5rem" }}
+                />
+              </span>
+              <span className="navbar-caption-wrap" />
             </div>
           </nav>
         </section>
