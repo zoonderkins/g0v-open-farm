@@ -5,6 +5,7 @@ import Category from "./components/Category";
 import Content from "./components/Content";
 import Vegetables from "./components/ItemsList";
 import About from "./components/About";
+import News from "./components/News";
 import { observer } from "mobx-react";
 import Garden from "./stores/store";
 import DocumentMeta from "react-document-meta";
@@ -29,23 +30,42 @@ class App extends Component {
   render() {
     console.log(appStore.title);
     // appStore.updateTitle('test');
-    const meta = {title:appStore.title};
+    const meta = { title: appStore.title };
     return (
       <DocumentMeta {...meta}>
         <Router onChange={this.handleRoute}>
           <div>
             <Switch>
-              <Route path="/" render={props => <Home {...props} currentTitle={"Home"} store={appStore}/>} exact />
+              <Route
+                path="/"
+                render={props => (
+                  <Home {...props} currentTitle={"Home"} store={appStore} />
+                )}
+                exact
+              />
               <Route
                 path="/category"
-                render={props => <Category {...props} currentTitle={"Category"} store={appStore} />}
+                render={props => (
+                  <Category
+                    {...props}
+                    currentTitle={"Category"}
+                    store={appStore}
+                  />
+                )}
               />
               <Route path="/content" component={Content} />
               <Route
                 path="/vegetables"
-                render={props => <Vegetables {...props} currentTitle={"Vegetables"} store={appStore} />}
+                render={props => (
+                  <Vegetables
+                    {...props}
+                    currentTitle={"Vegetables"}
+                    store={appStore}
+                  />
+                )}
               />
               <Route path="/about" component={About} />
+              <Route path="/news" component={News} />
               <Route exact component={Error} />
             </Switch>
           </div>

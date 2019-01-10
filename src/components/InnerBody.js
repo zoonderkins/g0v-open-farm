@@ -5,17 +5,23 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 import SubNav from "./SubNav";
 import { getVegatableList } from "../util/apiLogic";
 import { observer } from "mobx-react";
+
 const styles = {
   root: {
     padding: "2%",
+    marginTop: "5px",
     margin: "3%",
     width: "auto",
     display: "flex",
     flexGrow: 1
   },
+
   img: {
     maxHeigh: "90%",
     maxWidth: "100%",
@@ -59,14 +65,40 @@ class InnerBody extends Component {
       </Grid>
     ));
   };
+
+  handleChange = (event, value) => {
+    this.setState({ value });
+  };
+
+  state = {
+    value: 0
+  };
   render() {
     const { classes } = this.props;
+    const { value } = this.state;
     return (
       <React.Fragment>
         <SubNav />
-        <Grid container spacing={8} className={classes.root}>
-          {this.renderVegatables()}
-        </Grid>
+        <div className={classes.root}>
+          <Paper className={classes.rootPage}>
+            <AppBar position="static">
+              <Tabs
+                variant="fullWidth"
+                value={value}
+                onChange={this.handleChange}
+              >
+                <Tab label="Tab 1" style={{ width: "45vw" }} />
+                <Tab label="Tab 2" style={{ width: "45vw" }} />
+              </Tabs>
+            </AppBar>
+            {value === 0 && (
+              <Grid container spacing={8} style={{ marginTop: "5px" }}>
+                {this.renderVegatables()}
+              </Grid>
+            )}
+            {value === 1 && <Typography component="p">Tab 2</Typography>}
+          </Paper>
+        </div>
       </React.Fragment>
     );
   }
