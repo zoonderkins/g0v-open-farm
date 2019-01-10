@@ -18,9 +18,16 @@ const styles = () => ({
 });
 
 class ItemsList extends Component {
+  constructor(props) {
+    super(props);
+    let {currentTitle} = this.props;
+    console.log(`[Vegetables] currentTitle`, currentTitle);
+    this.props.store.updateTitle(currentTitle);
+  }
   async componentDidMount() {
     // load data from apiUrl
     try {
+      // document.title = this.props.store.title;
       let vegetableList = await getVegatableList({ numToFetch: 10 });
       this.props.store.updateList(vegetableList);
       console.log(`[itemlist]`, this.props.store.itemlist);
