@@ -15,10 +15,6 @@ const styles = {
   root: {
     overflow: "hidden"
   },
-  card: {
-    maxWidth: 380,
-    margin: "10px"
-  },
   title: {
     zIndex: 22,
     position: "absolute",
@@ -35,10 +31,15 @@ const styles = {
   wrap: {
     display: "flex",
     flexDirection: "row",
-    margin: "2%",
+
+    flexWrap: "wrap",
     padding: "10px",
     height: "auto",
-    flexWrap: "wrap"
+    flexGrow: 1
+  },
+  card: {
+    maxWidth: "180px",
+    margin: "5px"
   },
   contentImg: {
     height: "80px"
