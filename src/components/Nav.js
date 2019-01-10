@@ -13,7 +13,6 @@ import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ListItem from "@material-ui/core/ListItem";
-// import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Icon from "@material-ui/core/Icon";
 import Avatar from "@material-ui/core/Avatar";
@@ -22,9 +21,7 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
 const drawerWidth = 200;
 const styles = () => ({
-  root: {
-    // display: "flex"
-  },
+  root: {},
   appBar: {},
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -54,7 +51,6 @@ const styles = () => ({
   content: {
     flexGrow: 1,
     padding: "3%",
-
     marginLeft: -drawerWidth
   },
   contentShift: {
@@ -64,6 +60,7 @@ const styles = () => ({
 
 class Nav extends Component {
   state = {
+    currentTitle: this.props.store.title,
     open: false
   };
   handleDrawerOpen = () => {
@@ -77,16 +74,22 @@ class Nav extends Component {
   renderList = () => {
     return ["Home", "Category", "Vegetables", "News"].map((text, index) => {
       let newText = text.toLowerCase();
-
       return (
-        <Link key={text} to={newText === "home" ? "/" : `/${newText}`}>
-          <ListItem button key={text}>
+        <Link
+          key={text}
+          to={newText === "home" ? "/" : `/${newText}`}
+          onClick={() => {
+            this.props.store.updateTitle(text);
+          }}
+        >
+          <ListItem>
             <Avatar>
               {text === "Home" && <Icon> home </Icon>}
               {text === "Vegetables" && <Icon>list</Icon>}
               {text === "Category" && <Icon> category </Icon>}
               {text === "News" && <Icon> store </Icon>}
             </Avatar>
+
             <ListItemText primary={text} />
           </ListItem>
         </Link>
@@ -109,7 +112,6 @@ class Nav extends Component {
         >
           <Toolbar disableGutters={!open}>
             <IconButton
-              // className={classes.menuButton}
               color="inherit"
               aria-label="Menu"
               onClick={this.handleDrawerOpen}
@@ -117,9 +119,10 @@ class Nav extends Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit" />
+            <Typography variant="h6" color="inherit">
+              {this.state.currentTitle}
+            </Typography>
           </Toolbar>
-          {/* <SubNav /> */}
         </AppBar>
 
         <Drawer
@@ -141,7 +144,12 @@ class Nav extends Component {
           <Divider />
 
           {/* {Setting and About Icon} */}
-          <Link to="/about">
+          <Link
+            to="/about"
+            onClick={() => {
+              this.props.store.updateTitle("About");
+            }}
+          >
             <ListItem button>
               <Avatar>
                 <Icon>device_unknown</Icon>
@@ -158,4 +166,4 @@ Nav.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(Nav);
+export default withStyles(styles)(Nav);

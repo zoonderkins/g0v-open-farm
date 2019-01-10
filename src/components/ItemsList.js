@@ -20,7 +20,8 @@ const styles = () => ({
 class ItemsList extends Component {
   constructor(props) {
     super(props);
-    let {currentTitle} = this.props;
+    console.log(this.props.store);
+    let { currentTitle } = this.props.store;
     console.log(`[Vegetables] currentTitle`, currentTitle);
     this.props.store.updateTitle(currentTitle);
   }
@@ -41,7 +42,7 @@ class ItemsList extends Component {
     let { itemlist } = this.props.store;
 
     return itemlist.map((ctx, index) => (
-      <Link to={{ pathname: "/content", state: { ...ctx } }}>
+      <Link key={index} to={{ pathname: "/content", state: { ...ctx } }}>
         <List key={index} className={classes.root}>
           <ListItem alignItems="flex-start">
             <Avatar src={ctx.cover} />
@@ -66,9 +67,10 @@ class ItemsList extends Component {
     ));
   };
   render() {
+    let store = this.props.store;
     return (
       <React.Fragment>
-        <Nav />
+        <Nav store={store} />
         <div>{this.renderList()}</div>
       </React.Fragment>
     );

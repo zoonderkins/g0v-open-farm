@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import Nav from "./Nav";
 
@@ -19,14 +17,17 @@ const styles = () => ({
 class News extends Component {
   constructor(props) {
     super(props);
+    let { currentTitle } = this.props;
+    console.log(`[News] currentTitle: `, currentTitle);
+    this.props.store.updateTitle(currentTitle);
   }
 
   render() {
     const { classes } = this.props;
-
+    let store = this.props.store;
     return (
       <React.Fragment>
-        <Nav />
+        <Nav store={store} />
         <List className={classes.root}>
           <ListItem alignItems="flex-start">
             <ListItemText

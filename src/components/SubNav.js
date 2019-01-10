@@ -45,8 +45,6 @@ class SubNav extends React.Component {
           <Tabs
             value={value}
             onChange={this.handleChange}
-            indicatorColor="white"
-            // textColor="primary"
             variant="scrollable"
             scrollButtons="on"
           >

@@ -16,12 +16,19 @@ const styles = () => ({
 });
 
 class About extends Component {
-  
+  constructor(props) {
+    super(props);
+    let { currentTitle } = this.props;
+    console.log(`[About] currentTitle: `, currentTitle);
+    this.props.store.updateTitle(currentTitle);
+  }
+
   render() {
     const { classes } = this.props;
+    let store = this.props.store;
     return (
       <React.Fragment>
-        <Nav />
+        <Nav store={store} />
         <List className={classes.root}>
           <ListItem>
             <Avatar>

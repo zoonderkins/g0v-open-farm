@@ -8,7 +8,7 @@ import About from "./components/About";
 import News from "./components/News";
 import { observer } from "mobx-react";
 import Garden from "./stores/store";
-import {Helmet} from 'react-helmet';
+import { Helmet } from "react-helmet";
 // set global store
 const appStore = new Garden();
 const Error = () => (
@@ -17,12 +17,12 @@ const Error = () => (
   </div>
 );
 class App extends Component {
-  
   handleRoute = e => {
     this.currentUrl = e.url;
   };
-  render() { 
-    return (<Router onChange={this.handleRoute}>
+  render() {
+    return (
+      <Router onChange={this.handleRoute}>
         <div>
           <Helmet>
             <title>{appStore.title}</title>
@@ -45,7 +45,7 @@ class App extends Component {
                 />
               )}
             />
-            <Route path="/content" component={Content} />
+
             <Route
               path="/vegetables"
               render={props => (
@@ -56,8 +56,19 @@ class App extends Component {
                 />
               )}
             />
-            <Route path="/about" component={About} />
-            <Route path="/news" component={News} />
+            <Route
+              path="/news"
+              render={props => (
+                <News {...props} currentTitle={"News"} store={appStore} />
+              )}
+            />
+            <Route
+              path="/about"
+              render={props => (
+                <About {...props} currentTitle={"About"} store={appStore} />
+              )}
+            />
+            <Route path="/content" component={Content} />
             <Route exact component={Error} />
           </Switch>
         </div>
