@@ -7,7 +7,8 @@ import Vegetables from "./components/ItemsList";
 import About from "./components/About";
 import { observer } from "mobx-react";
 import Garden from "./stores/store";
-import DocumentMeta from "react-document-meta";
+import {Helmet} from 'react-helmet';
+// import DocumentMeta from "react-document-meta";
 // set global store
 const appStore = new Garden();
 const Error = () => (
@@ -29,11 +30,15 @@ class App extends Component {
   render() {
     console.log(appStore.title);
     // appStore.updateTitle('test');
-    const meta = {title:appStore.title};
+    // const meta = {title:appStore.title};
     return (
-      <DocumentMeta {...meta}>
+      // <DocumentMeta {...meta}>
+      
         <Router onChange={this.handleRoute}>
           <div>
+            <Helmet>
+              <title>{appStore.title}</title>
+            </Helmet>
             <Switch>
               <Route path="/" render={props => <Home {...props} currentTitle={"Home"} store={appStore}/>} exact />
               <Route
@@ -50,7 +55,6 @@ class App extends Component {
             </Switch>
           </div>
         </Router>
-      </DocumentMeta>
     );
   }
 }
