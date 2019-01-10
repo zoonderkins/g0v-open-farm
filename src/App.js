@@ -9,7 +9,6 @@ import News from "./components/News";
 import { observer } from "mobx-react";
 import Garden from "./stores/store";
 import { Helmet } from "react-helmet";
-
 // set global store
 const appStore = new Garden();
 const Error = () => (

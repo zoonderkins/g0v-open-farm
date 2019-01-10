@@ -22,7 +22,7 @@ class ItemsList extends Component {
   constructor(props) {
     super(props);
     console.log(this.props.store);
-    let { currentTitle } = this.props.store;
+    let { currentTitle } = this.props;
     console.log(`[Vegetables] currentTitle`, currentTitle);
     this.props.store.updateTitle(currentTitle);
   }
