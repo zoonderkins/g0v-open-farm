@@ -9,7 +9,6 @@ class Home extends React.Component {
     this.props.store.updateTitle(currentTitle);
   }
   render() {
-    // document.title = this.props.store.title;
     return (
       <div>
         <section className="menu cid-qxiabk0CYF" id="menu1-2y">
