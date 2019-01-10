@@ -40,7 +40,6 @@ class InnerBody extends Component {
     }
   }
   renderVegatables = () => {
-    // let {vegetableList} = this.state;
     let { itemlist } = this.props.store;
     const { classes } = this.props;
     return itemlist.map((ctx, index) => (

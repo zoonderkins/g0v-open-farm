@@ -16,10 +16,7 @@ const styles = () => ({
 });
 
 class About extends Component {
-  constructor(props) {
-    super(props);
-  }
-
+  
   render() {
     const { classes } = this.props;
     return (
