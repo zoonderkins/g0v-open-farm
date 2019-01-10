@@ -7,7 +7,7 @@ class Category extends Component {
     let {currentTitle} = this.props;
     console.log(`[Category] currentTitle: `, currentTitle);
     this.props.store.updateTitle(currentTitle);
-    document.title = this.props.store.title;
+    // document.title = this.props.store.title;
     console.log("[itemlist]", this.props.store.itemlist);
     return (
       <div>
