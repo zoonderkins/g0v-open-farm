@@ -2,14 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 
 const styles = {
   root: {
-    zIndex: 10,
-    flexGrow: 1
+    flexGrow: 1,
+    width: "100%"
   },
   toolbar: {
     marginLeft: "30%",
@@ -21,37 +20,53 @@ const styles = {
     color: "white"
   },
   bg: {
-    background: "green"
+    background: "green",
+    color: "white"
   },
   input: {
     display: "none"
   }
 };
 
-function SubNav(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <AppBar position="relative" className={classes.bg}>
-        <Toolbar>
-          <Grid container spacing={24}>
-            <Grid item xs={3}>
-              <Button className={classes.button}>September</Button>
-            </Grid>
-            <Grid item xs={3}>
-              <Button className={classes.button}>October</Button>
-            </Grid>
-            <Grid item xs={3}>
-              <Button className={classes.button}>November</Button>
-            </Grid>
-            <Grid item xs={3}>
-              <Button className={classes.button}>December</Button>
-            </Grid>
-          </Grid>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
+class SubNav extends React.Component {
+  state = {
+    value: 0
+  };
+  handleChange = (event, value) => {
+    this.setState({ value });
+  };
+
+  render() {
+    const { classes } = this.props;
+    const { value } = this.state;
+    return (
+      <div className={classes.root}>
+        <AppBar position="static" className={classes.bg}>
+          <Tabs
+            value={value}
+            onChange={this.handleChange}
+            indicatorColor="white"
+            // textColor="primary"
+            variant="scrollable"
+            scrollButtons="on"
+          >
+            <Tab label="Jan" />
+            <Tab label="Feb" />
+            <Tab label="March" />
+            <Tab label="April" />
+            <Tab label="May" />
+            <Tab label="June" />
+            <Tab label="July" />
+            <Tab label="Aug" />
+            <Tab label="Sep" />
+            <Tab label="Octo" />
+            <Tab label="Nov" />
+            <Tab label="Dec" />
+          </Tabs>
+        </AppBar>
+      </div>
+    );
+  }
 }
 
 SubNav.propTypes = {

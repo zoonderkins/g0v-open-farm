@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
@@ -18,6 +18,15 @@ const styles = {
   card: {
     maxWidth: 380,
     margin: "10px"
+  },
+  title: {
+    zIndex: 22,
+    position: "absolute",
+    top: 10,
+    left: 50,
+    color: "white",
+    fontWeight: "bold",
+    background: "black"
   },
   media: {
     objectFit: "cover",
@@ -44,43 +53,61 @@ const styles = {
   back: {
     position: "absolute",
     zIndex: "22",
-    top: "2vh",
+    fontWeight: "bold",
+    top: "5vh",
     left: "5px"
   }
 };
-const showList = ["avg_total_growing_days" ,"min_growing_temperature" 
-  ,"height" , "min_pH" , "max_pH" , "variety"];
-const icons = ["https://static.thenounproject.com/png/81677-200.png",
-"https://static.thenounproject.com/png/1979336-200.png",
-"https://static.thenounproject.com/png/434088-200.png",
-"https://static.thenounproject.com/png/1882074-200.png",
-"https://static.thenounproject.com/png/1118764-200.png" , 
-"https://static.thenounproject.com/png/61962-200.png"];
+const showList = [
+  "avg_total_growing_days",
+  "min_growing_temperature",
+  "height",
+  "min_pH",
+  "max_pH",
+  "variety"
+];
+const icons = [
+  "https://static.thenounproject.com/png/81677-200.png",
+  "https://static.thenounproject.com/png/1979336-200.png",
+  "https://static.thenounproject.com/png/434088-200.png",
+  "https://static.thenounproject.com/png/1882074-200.png",
+  "https://static.thenounproject.com/png/1118764-200.png",
+  "https://static.thenounproject.com/png/61962-200.png"
+];
 const units = ["days", "\u2103", "cm", "ph", "ph", ""];
 class Content extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    let {location} = this.props;
-    let vegatable = location?(location.hasOwnProperty('state')? location.state:null):null;
+    let { location } = this.props;
+    let vegatable = location
+      ? location.hasOwnProperty("state")
+        ? location.state
+        : null
+      : null;
     this.state = {
-      "vegatable": vegatable
+      vegatable: vegatable
     };
   }
 
   render() {
-    const {classes} = this.props;
-    const {vegatable} = this.state;
+    const { classes } = this.props;
+    const { vegatable } = this.state;
     console.log(vegatable);
-  
+
     return (
       <div className={classes.root}>
-        <CardMedia
-          component="img"
-          alt={`${vegatable.common_names}`}
-          className={classes.media}
-          image={`${vegatable.cover}`}
-          title={`${vegatable.common_names}`}
-        />
+        <CardActionArea>
+          <Typography variant="h5" component="h2" className={classes.title}>
+            {`${vegatable.common_names}`}
+          </Typography>
+          <CardMedia
+            component="img"
+            alt={`${vegatable.common_names}`}
+            className={classes.media}
+            image={`${vegatable.cover}`}
+            title={`${vegatable.common_names}`}
+          />
+        </CardActionArea>
         <Link to="/category">
           <IconButton className={classes.back}>
             <ChevronLeftIcon style={{ color: "white", fontWeight: "bold" }} />
@@ -119,8 +146,7 @@ class Content extends Component {
       </div>
     );
   }
-  
-};
+}
 
 Content.propTypes = {
   classes: PropTypes.object.isRequired
