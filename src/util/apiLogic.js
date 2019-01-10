@@ -2,9 +2,10 @@ import {apiUrl} from '../config/config.json';
 /**
  * @description getVegatableList
  * 
- * @param {number} numToFetch 
+ * @param {number} numToFetch
+ * @param {Function} filterFn
  */
-const getVegatableList = async ({numToFetch=10}) => {
+const getVegatableList = async ({numToFetch=10, filterFn=null}) => {
   // load data from apiUrl
   try {
     let result = await fetch(`${apiUrl}`);
@@ -19,10 +20,13 @@ const getVegatableList = async ({numToFetch=10}) => {
       finalResult = await result.text();
       throw new Error(finalResult);
     } 
+    if (filterFn!=null && typeof filterFn === "function" ) {
+      finalResult = finalResult.filter((item)=>filterFn(item));
+    }
     // only list previous numToFetch items
     finalResult = finalResult.filter((item)=> {
-      return item.cover != null && item.avg_total_growing_days!= null && item.min_growing_temperature!= null
-      &&item.height!=null && item.max_pH!=null && item.min_pH!=null && item.variety!=null;
+      return (item.cover != null && item.avg_total_growing_days!= null && item.min_growing_temperature!= null
+      && item.height!=null) || (item.max_pH!=null && item.min_pH!=null && item.variety!=null);
     });
     finalResult = finalResult.slice(0, numToFetch);
     console.log(`[getVegatableList] api data:`,finalResult);

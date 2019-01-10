@@ -15,10 +15,6 @@ const styles = {
   root: {
     overflow: "hidden"
   },
-  card: {
-    maxWidth: 380,
-    margin: "10px"
-  },
   title: {
     zIndex: 22,
     position: "absolute",
@@ -35,10 +31,15 @@ const styles = {
   wrap: {
     display: "flex",
     flexDirection: "row",
-    margin: "2%",
+
+    flexWrap: "wrap",
     padding: "10px",
     height: "auto",
-    flexWrap: "wrap"
+    flexGrow: 1
+  },
+  card: {
+    maxWidth: "180px",
+    margin: "5px"
   },
   contentImg: {
     height: "80px"
@@ -58,6 +59,7 @@ const styles = {
     left: "5px"
   }
 };
+
 const showList = [
   "avg_total_growing_days",
   "min_growing_temperature",
@@ -122,8 +124,9 @@ class Content extends Component {
           />
         </Fab>
         <div className={classes.wrap}>
-          {showList.map((x, i) => (
-            <Card key={i} className={classes.card}>
+          {showList.map((x, i) => {
+            
+            return (vegatable.hasOwnProperty(`${x}`)&&vegatable[`${x}`]!==null)?(<Card key={i} className={classes.card}>
               <CardActionArea>
                 <Link to={`/${x}`}>
                   <CardContent>
@@ -140,8 +143,8 @@ class Content extends Component {
                   </CardContent>
                 </Link>
               </CardActionArea>
-            </Card>
-          ))}
+            </Card>):"";}
+            )}
         </div>
       </div>
     );

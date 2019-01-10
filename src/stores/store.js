@@ -5,6 +5,10 @@ configure({ enforceActions: 'observed' })
  */
 class Garden {
   /**
+   * @description observable currentTitle
+   */
+  currentTitle = "Home";
+  /**
    * @description observable isLoading
    */
   isLoading = false;
@@ -37,6 +41,12 @@ class Garden {
     return this.vegatableList.map(item=>toJS(item));
   }
   
+  updateTitle(currentTitle) {
+    this.currentTitle = currentTitle;
+  }
+  get title() {
+    return toJS(this.currentTitle);
+  }
   /**
    * @description getter to access loading
    */
@@ -51,7 +61,10 @@ decorate(Garden, {
   clearList: action,
   updateList: action,
   itemlist: computed,
-  setLoadingState: action
+  setLoadingState: action,
+  currentTitle: observable,
+  updateTitle: action,
+  title: computed
 });
 
 

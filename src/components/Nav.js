@@ -79,7 +79,7 @@ class Nav extends Component {
       let newText = text.toLowerCase();
 
       return (
-        <Link key={text} to={newText === "home" ? "/" : `/${newText}`}>
+        <Link key={text} to={(newText === "home") ? "/" : `/${newText}`}>
           <ListItem button key={text}>
             <Avatar>
               {text === "Home" && <Icon> home </Icon>}
