@@ -104,7 +104,8 @@ decorate(Garden, {
   cropList: computed,
   newsList: observable,
   updateNewsList: action,
-  newsAllList: computed
+  newsAllList: computed,
+  loading: computed
 });
 
 
