@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Nav from "./Nav";
 import InnerBody from "./InnerBody";
+import {observer} from 'mobx-react';
 import LoadingSpinner from './LoadingSpinner';
 class Category extends Component {
   constructor(props) {
@@ -12,15 +13,16 @@ class Category extends Component {
     console.log("[itemlist]", this.props.store.itemlist);
   }
   render() {
-    
+    // let {store} = this.props.store;
+    console.log(`[current loading]`, this.props.store.loading);
     return (
       <div>
         <Nav store={this.props.store} />
         <InnerBody store={this.props.store} />
-        <LoadingSpinner loading={this.props.store.loading}/>
+        {this.props.store.loading===true&&<LoadingSpinner loading={this.props.store.loading}/>}
       </div>
     );
   }
 }
-
+Category = observer(Category);
 export default Category;
