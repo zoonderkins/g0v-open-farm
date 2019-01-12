@@ -72,7 +72,7 @@ class Nav extends Component {
   };
 
   renderList = () => {
-    return ["Home", "Vegetables", "News"].map((text, index) => {
+    return ["Home", "Category", "News"].map((text, index) => {
       let newText = text.toLowerCase();
       return (
         <Link
@@ -85,8 +85,8 @@ class Nav extends Component {
           <ListItem>
             <Avatar>
               {text === "Home" && <Icon> home </Icon>}
-              {text === "Vegetables" && <Icon>list</Icon>}
-              {/* {text === "Category" && <Icon> category </Icon>} */}
+              {/* {text === "Vegetables" && <Icon>list</Icon>} */}
+              {text === "Category" && <Icon> category </Icon>}
               {text === "News" && <Icon> store </Icon>}
             </Avatar>
 

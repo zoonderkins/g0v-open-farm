@@ -1,3 +1,5 @@
 {
-  "apiUrl": "https://api.ohf.ag/testing/crop_chart"
+  "apiUrl": "https://api.ohf.ag/testing/crop_chart",
+  "newsApiUrl": "https://api.ohf.ag/testing/calendar",
+  "cropsApi":"https://api.ohf.ag/testing/opendata/crops/abundant/1"
 }

@@ -6,7 +6,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 import Nav from "./Nav";
-
+import { getCropsList, getNewsList } from '../util/apiLogic';
 const styles = () => ({
   root: {
     width: "100%",
@@ -21,7 +21,30 @@ class News extends Component {
     console.log(`[News] currentTitle: `, currentTitle);
     this.props.store.updateTitle(currentTitle);
   }
-
+  async componentDidMount () {
+    try {
+      this.props.store.setLoadingState(true);
+      let cropsList = await getCropsList({numToFetch:200});
+      console.log(`[getCropsList]`, cropsList);
+      this.props.store.updateCropsList(cropsList);
+      console.log(`[getCropsList] `, this.props.store.cropList);
+    } catch (e) {
+      console.log(`[getCropsList] error`, e.toString());
+    } finally {
+      this.props.store.setLoadingState(false);
+    }
+    try {
+      this.props.store.setLoadingState(true);
+      let newsList = await getNewsList({numToFetch: 200});
+      console.log(`[getNewsList]`, newsList);
+      this.props.store.updateNewsList(newsList);
+      console.log(`[getNewsList] `, this.props.store.newsAllList);
+    } catch (e) {
+      console.log(`[getNewsList] error`, e.toString());
+    } finally {
+      this.props.store.setLoadingState(false);
+    }
+  }
   render() {
     const { classes } = this.props;
     let store = this.props.store;
