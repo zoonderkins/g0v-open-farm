@@ -12,19 +12,7 @@ class Home extends React.Component {
     return (
       <div>
         <section className="menu cid-qxiabk0CYF" id="menu1-2y">
-          <nav className="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
-            <div className="navbar-brand">
-              <span className="navbar-logo">
-                <img
-                  src="https://raw.githubusercontent.com/wizardamigos/chapter-taipei/master/assets/wizard3.png"
-                  alt="Mobirise"
-                  media-simple="true"
-                  style={{ height: "5rem" }}
-                />
-              </span>
-              <span className="navbar-caption-wrap" />
-            </div>
-          </nav>
+          <nav className="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent" />
         </section>
 
         <section className="mbr-section content5 cid-qxOzrn5Fs7 mbr-parallax-background">

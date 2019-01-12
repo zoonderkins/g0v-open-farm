@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import Category from "./components/Category";
 import Content from "./components/Content";
-import Vegetables from "./components/ItemsList";
+// import Vegetables from "./components/ItemsList";
 import About from "./components/About";
 import News from "./components/News";
 import { observer } from "mobx-react";
@@ -46,7 +46,7 @@ class App extends Component {
               )}
             />
 
-            <Route
+            {/* <Route
               path="/vegetables"
               render={props => (
                 <Vegetables
@@ -55,7 +55,7 @@ class App extends Component {
                   store={appStore}
                 />
               )}
-            />
+            /> */}
             <Route
               path="/news"
               render={props => (

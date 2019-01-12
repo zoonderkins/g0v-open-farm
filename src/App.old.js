@@ -7,8 +7,6 @@ export default class App extends Component {
         <section
           className="menu cid-qxiabk0CYF"
           once="menu"
-          id="menu1-2y"
-          data-rv-view={1976}
         >
           <nav className="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
             <button
