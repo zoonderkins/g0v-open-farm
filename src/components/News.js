@@ -68,6 +68,13 @@ class News extends Component {
                   >
                     {ctx.content}
                   </Typography>
+                  <Typography
+                    component="span"
+                    className={classes.inline}
+                    color="textPrimary"
+                  >
+                    {ctx.organizer}
+                  </Typography>
                 </React.Fragment>
               }
             />
