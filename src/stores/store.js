@@ -13,6 +13,16 @@ class Garden {
    */
   isLoading = false;
   /**
+   * @description observable cropsList
+   */
+  cropsList = [];
+  /**
+   * 
+   */
+  updateCropsList(updatedCropsList)  {
+    this.cropsList = [...updatedCropsList];
+  }
+  /**
    * @action
    * 
    * @param {boolean} currentState 
@@ -53,6 +63,12 @@ class Garden {
   get loading () {
     return toJS(this.isLoading);
   }
+  /**
+   * @description getter to access coursesList
+   */
+  get cropList () {
+    return this.cropsList.map(item=>toJS(item));
+  }
 }
 
 decorate(Garden, {
@@ -64,7 +80,10 @@ decorate(Garden, {
   setLoadingState: action,
   currentTitle: observable,
   updateTitle: action,
-  title: computed
+  title: computed,
+  cropsList: observable,
+  updateCropsList: action,
+  cropList: computed
 });
 
 

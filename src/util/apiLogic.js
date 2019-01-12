@@ -8,7 +8,7 @@ import { apiUrl, courseApiUrl,  cropsApi } from '../config/config.json';
 const getVegatableList = async ({numToFetch=10, filterFn=null}) => {
   // load data from apiUrl
   try {
-    let finalResult = await fetchMethod(`${apiUrl}`); 
+    let finalResult = await fetchMethod({apiUrl:`${apiUrl}`}); 
     if (filterFn!=null && typeof filterFn === "function" ) {
       finalResult = finalResult.filter((item)=>filterFn(item));
     }
@@ -29,21 +29,31 @@ const getVegatableList = async ({numToFetch=10, filterFn=null}) => {
  * 
  * @param {string} apiUrl 
  */
-const fetchMethod = async (apiUrl) => {
+const fetchMethod = async ({apiUrl="", option=null}) => {
   try {
     if (apiUrl===undefined||apiUrl===""){
       throw new Error(`apiUrl missing: ${apiUrl}`);
     }
-    let result = await fetch(`${apiUrl}`);
+    let result = null;
+    if (option === null) {
+      result = await fetch(`${apiUrl}`);
+    } else {
+      console.log(option);
+      result = await fetch(`${apiUrl}`, option);
+    }
     let finalResult = null;
+    console.log(result);
     if (result.status === 200) {
       try {
+        console.log('final0:', finalResult);
         finalResult = await result.json();
+        console.log('final1:',finalResult);
       } catch (parseErr) {
         throw new Error(parseErr.toString());
       }
     } else {
       finalResult = await result.text();
+      console.log('final2:',finalResult);
       throw new Error(finalResult);
     }
     return finalResult;
@@ -59,12 +69,12 @@ const fetchMethod = async (apiUrl) => {
 const getCourseList = async ({numToFetch=10, filterFn=null}) => {
   // load data from apiUrl
   try {
-    let finalResult = await fetchMethod(`${courseApiUrl}`); 
+    let finalResult = await fetchMethod({apiUrl:`${cropsApi}`}); 
     if (filterFn!=null && typeof filterFn === "function" ) {
       finalResult = finalResult.filter((item)=>filterFn(item));
     }
     // only list previous numToFetch items
-    finalResult = finalResult.slice(0, numToFetch);
+    // finalResult = finalResult.slice(0, numToFetch);
     console.log(`[getCourseList] api data:`,finalResult);
     return finalResult;
   } catch (e) {
@@ -80,12 +90,19 @@ const getCourseList = async ({numToFetch=10, filterFn=null}) => {
 const getCropsList = async ({numToFetch=10, filterFn=null}) => {
   // load data from apiUrl
   try {
-    let finalResult = await fetchMethod(`${cropsApi}`); 
+    let finalResult = await fetchMethod({apiUrl:`${cropsApi}`}); 
     if (filterFn!=null && typeof filterFn === "function" ) {
       finalResult = finalResult.filter((item)=>filterFn(item));
     }
     // only list previous numToFetch items
-    finalResult = finalResult.slice(0, numToFetch);
+    // finalResult = finalResult.slice(0, numToFetch);
+    let keys = Object.keys(finalResult);
+    console.log(keys);
+    let tempArr = [];
+    keys.forEach(key=>{
+      tempArr.push({key, value:finalResult[`${key}`]});
+    });
+    finalResult = [...tempArr];
     console.log(`[getCropsList] api data:`,finalResult);
     return finalResult;
   } catch (e) {

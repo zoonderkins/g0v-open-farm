@@ -1,5 +1,5 @@
 {
   "apiUrl": "https://api.ohf.ag/testing/crop_chart",
-  "courseApiUrl": "https://data.coa.gov.tw/Service/OpenData/FromM/FarmerAcademyData.aspx",
+  "courseApiUrl": "http://data.coa.gov.tw/Service/OpenData/FromM/FarmerAcademyData.aspx",
   "cropsApi":"https://api.ohf.ag/testing/opendata/crops/abundant/1"
 }
