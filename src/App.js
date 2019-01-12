@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import Category from "./components/Category";
 import Content from "./components/Content";
-// import Vegetables from "./components/ItemsList";
+import Vegetables from "./components/ItemsList";
 import About from "./components/About";
 import News from "./components/News";
 import { observer } from "mobx-react";
@@ -22,7 +22,7 @@ class App extends Component {
   };
   render() {
     return (
-      <Router onClick={this.handleRoute}>
+      <Router onChange={this.handleRoute}>
         <div>
           <Helmet>
             <title>{appStore.title}</title>
@@ -33,6 +33,7 @@ class App extends Component {
               render={props => (
                 <Home {...props} currentTitle={"Home"} store={appStore} />
               )}
+              exact
             />
             <Route
               path="/category"
@@ -68,8 +69,7 @@ class App extends Component {
               )}
             />
             <Route path="/content" component={Content} />
-
-            <Route component={Error} />
+            <Route exact component={Error} />
           </Switch>
         </div>
       </Router>
