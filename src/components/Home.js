@@ -25,7 +25,7 @@ class Home extends React.Component {
               <Link to="/">
                 <div className=" col-12 col-md-8">
                   <h2 className="align-center mbr-bold mbr-white pb-3 mbr-fonts-style display-5">
-                    作物圖鑒
+                    Cropdex 作物圖鑑
                   </h2>
                 </div>
               </Link>
@@ -39,6 +39,10 @@ class Home extends React.Component {
                 className="tabs-container"
                 style={{ width: "100%", textAlign: "center" }}
               >
+                <h2 style={{ textAlign: "center" }}>
+                  Cropdex 是一個建構在 Ethereum
+                  blockchain，富有遊戲性的開源專案，任何人都可以參與
+                </h2>
                 <ul className="nav nav-tabs" role="tablist">
                   <li className="nav-item" id="t1">
                     <Link

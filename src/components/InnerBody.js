@@ -11,6 +11,7 @@ import Tab from "@material-ui/core/Tab";
 import SubNav from "./SubNav";
 import { getVegatableList } from "../util/apiLogic";
 import { observer } from "mobx-react";
+import Chart from "./Chart";
 
 const styles = {
   root: {
@@ -37,9 +38,9 @@ class InnerBody extends Component {
   async componentDidMount() {
     // load data from apiUrl
     try {
-      console.log(`itemList chagne loading status`)
+      console.log(`itemList chagne loading status`);
       this.props.store.setLoadingState(true);
-      let vegetableList = await getVegatableList({ numToFetch: 200});
+      let vegetableList = await getVegatableList({ numToFetch: 200 });
       // this.setState({vegetableList: vegetableList});
       this.props.store.updateList(vegetableList);
       console.log(`[itemlist]`, this.props.store.itemlist);
@@ -94,8 +95,8 @@ class InnerBody extends Component {
                 value={value}
                 onChange={this.handleChange}
               >
-                <Tab label="Tab 1" style={{ width: "45vw" }} />
-                <Tab label="Tab 2" style={{ width: "45vw" }} />
+                <Tab label="植物列表" style={{ width: "45vw" }} />
+                <Tab label="食物的營養" style={{ width: "45vw" }} />
               </Tabs>
             </AppBar>
             {value === 0 && (
@@ -103,7 +104,7 @@ class InnerBody extends Component {
                 {this.renderVegatables()}
               </Grid>
             )}
-            {value === 1 && <Typography component="p">Tab 2</Typography>}
+            {value === 1 && <Chart />}
           </Paper>
         </div>
       </React.Fragment>
