@@ -2,7 +2,6 @@
   "name": "g0v",
   "version": "0.1.1",
   "private": true,
-  "homepage": "https://ookangzheng.github.io/g0v-open-farm",
   "dependencies": {
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
