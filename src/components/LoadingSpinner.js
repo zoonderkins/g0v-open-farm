@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import {css} from '@emotion/core';
-import {ClipLoader} from 'react-spinners';
+import {DotLoader} from 'react-spinners';
 
 const override = css`
   display: block;
-  margin: 0 auto;
+  margin: 10vh auto;
   border-color: red;
+  height: 100%;
+  width: 100%;
 `;
 
 class LoadingSpinner extends Component{
@@ -13,10 +15,10 @@ class LoadingSpinner extends Component{
     let {loading} = this.props;
     return (
       <div className="sweet-loading">
-        <ClipLoader
+        <DotLoader
           css={override}
-          sizeUnit={"px"}
-          size={150}
+          sizeUnit={"vw"}
+          size={50}
           color={"#123abc"}
           loading={loading}
         />

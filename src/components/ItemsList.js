@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import Nav from "./Nav";
 import { getVegatableList } from "../util/apiLogic";
 import { observer } from "mobx-react";
-
+import LoadingSpinner from './LoadingSpinner';
 const styles = () => ({
   root: {
     width: "100%",
@@ -30,11 +30,14 @@ class ItemsList extends Component {
     // load data from apiUrl
     try {
       // document.title = this.props.store.title;
+      this.props.store.setLoadingState(true);
       let vegetableList = await getVegatableList({ numToFetch: 10 });
       this.props.store.updateList(vegetableList);
       console.log(`[itemlist]`, this.props.store.itemlist);
     } catch (e) {
       console.log(`[getVegatableList] error :`, e.toString());
+    } finally {
+      this.props.store.setLoadingState(false);
     }
   }
 
@@ -73,6 +76,7 @@ class ItemsList extends Component {
       <React.Fragment>
         <Nav store={store} />
         <div>{this.renderList()}</div>
+        <LoadingSpinner loading={this.props.store.loading}/>
       </React.Fragment>
     );
   }

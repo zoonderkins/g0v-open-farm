@@ -37,12 +37,15 @@ class InnerBody extends Component {
   async componentDidMount() {
     // load data from apiUrl
     try {
+      this.props.store.setLoadingState(true);
       let vegetableList = await getVegatableList({ numToFetch: 10 });
       // this.setState({vegetableList: vegetableList});
       this.props.store.updateList(vegetableList);
       console.log(`[itemlist]`, this.props.store.itemlist);
     } catch (e) {
       console.log(`[getVegatableList] error :`, e.toString());
+    } finally {
+      this.props.store.setLoadingState(false);
     }
   }
   renderVegatables = () => {
