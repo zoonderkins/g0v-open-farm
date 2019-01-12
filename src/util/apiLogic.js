@@ -1,4 +1,4 @@
-import {apiUrl} from '../config/config.json';
+import { apiUrl, courseApiUrl,  cropsApi } from '../config/config.json';
 /**
  * @description getVegatableList
  * 
@@ -51,5 +51,45 @@ const fetchMethod = async (apiUrl) => {
     throw e;
   }
 };
+/**
+ * @description getCourseList
+ * 
+ * @param {jsonObject} criteria 
+ */
+const getCourseList = async ({numToFetch=10, filterFn=null}) => {
+  // load data from apiUrl
+  try {
+    let finalResult = await fetchMethod(`${courseApiUrl}`); 
+    if (filterFn!=null && typeof filterFn === "function" ) {
+      finalResult = finalResult.filter((item)=>filterFn(item));
+    }
+    // only list previous numToFetch items
+    finalResult = finalResult.slice(0, numToFetch);
+    console.log(`[getCourseList] api data:`,finalResult);
+    return finalResult;
+  } catch (e) {
+    throw e;
+  }
+};
 
-export { getVegatableList };
+/**
+ * @description getCropsList
+ * 
+ * @param {jsonObject} criteria 
+ */
+const getCropsList = async ({numToFetch=10, filterFn=null}) => {
+  // load data from apiUrl
+  try {
+    let finalResult = await fetchMethod(`${cropsApi}`); 
+    if (filterFn!=null && typeof filterFn === "function" ) {
+      finalResult = finalResult.filter((item)=>filterFn(item));
+    }
+    // only list previous numToFetch items
+    finalResult = finalResult.slice(0, numToFetch);
+    console.log(`[getCropsList] api data:`,finalResult);
+    return finalResult;
+  } catch (e) {
+    throw e;
+  }
+};
+export { getVegatableList, getCourseList, getCropsList };
