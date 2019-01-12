@@ -3,6 +3,7 @@ import Nav from "./Nav";
 import InnerBody from "./InnerBody";
 import {observer} from 'mobx-react';
 import LoadingSpinner from './LoadingSpinner';
+import { getVegatableList } from "../util/apiLogic";
 class Category extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +12,20 @@ class Category extends Component {
     this.props.store.updateTitle(currentTitle);
     // document.title = this.props.store.title;
     console.log("[itemlist]", this.props.store.itemlist);
+  }
+  
+  async componentWillReceiveProps() {
+    try {
+      // document.title = this.props.store.title;
+      this.props.store.setLoadingState(true);
+      let vegetableList = await getVegatableList({ numToFetch: 200 });
+      this.props.store.updateList(vegetableList);
+      console.log(`[itemlist]`, this.props.store.itemlist);
+    } catch (e) {
+      console.log(`[getVegatableList] error :`, e.toString());
+    } finally {
+      this.props.store.setLoadingState(false);
+    }
   }
   render() {
     // let {store} = this.props.store;

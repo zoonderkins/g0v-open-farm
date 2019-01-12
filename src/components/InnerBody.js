@@ -39,7 +39,7 @@ class InnerBody extends Component {
     try {
       console.log(`itemList chagne loading status`)
       this.props.store.setLoadingState(true);
-      let vegetableList = await getVegatableList({ numToFetch: 10 });
+      let vegetableList = await getVegatableList({ numToFetch: 200});
       // this.setState({vegetableList: vegetableList});
       this.props.store.updateList(vegetableList);
       console.log(`[itemlist]`, this.props.store.itemlist);
@@ -74,6 +74,7 @@ class InnerBody extends Component {
 
   handleChange = (event, value) => {
     this.setState({ value });
+    this.props.store.setLoadingState(false);
   };
 
   state = {

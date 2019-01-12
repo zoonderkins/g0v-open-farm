@@ -31,7 +31,7 @@ class ItemsList extends Component {
     try {
       // document.title = this.props.store.title;
       this.props.store.setLoadingState(true);
-      let vegetableList = await getVegatableList({ numToFetch: 10 });
+      let vegetableList = await getVegatableList({ numToFetch: 200 });
       this.props.store.updateList(vegetableList);
       console.log(`[itemlist]`, this.props.store.itemlist);
     } catch (e) {
