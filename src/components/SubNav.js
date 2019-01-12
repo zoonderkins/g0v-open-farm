@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-
+import { getVegatableList } from "../util/apiLogic";
 const styles = {
   root: {
     flexGrow: 1,
@@ -28,12 +28,28 @@ const styles = {
   }
 };
 
+const filterWithGrowthMonFn = (month)=>(item => item.growth_month===month);
 class SubNav extends React.Component {
   state = {
     value: 0
   };
-  handleChange = (event, value) => {
+  handleChange = async (event, value) => {
     this.setState({ value });
+    
+    
+    try {
+      // document.title = this.props.store.title;
+      this.props.store.setLoadingState(true);
+      let vegetableList = await getVegatableList({numToFetch: 100, isMock: true, filterFn: filterWithGrowthMonFn(value+1)});
+      this.props.store.updateList(vegetableList);
+      console.log(`[itemlist]`, this.props.store.itemlist);
+    } catch (e) {
+      console.log(`[getVegatableList] error :`, e.toString());
+    } finally {
+      this.props.store.setLoadingState(false);
+    }
+      
+    
   };
 
   render() {
