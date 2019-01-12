@@ -17,7 +17,15 @@ class Garden {
    */
   cropsList = [];
   /**
-   * 
+   * @description observable newsList
+   */
+  newsList = [];
+  updateNewsList(updatedNewsList) {
+    this.newsList = [...updatedNewsList];
+  }
+  /**
+   * @description action
+   * @param {Array} updatedCropsList 
    */
   updateCropsList(updatedCropsList)  {
     this.cropsList = [...updatedCropsList];
@@ -50,10 +58,16 @@ class Garden {
   get itemlist () {
     return this.vegatableList.map(item=>toJS(item));
   }
-  
+  /**
+   * @description action to update Title
+   * @param {string} currentTitle 
+   */
   updateTitle(currentTitle) {
     this.currentTitle = currentTitle;
   }
+  /**
+   * @description getter to access title
+   */
   get title() {
     return toJS(this.currentTitle);
   }
@@ -69,6 +83,10 @@ class Garden {
   get cropList () {
     return this.cropsList.map(item=>toJS(item));
   }
+
+  get newsAllList () {
+    return this.newsList.map(item=>toJS(item));
+  }
 }
 
 decorate(Garden, {
@@ -83,7 +101,10 @@ decorate(Garden, {
   title: computed,
   cropsList: observable,
   updateCropsList: action,
-  cropList: computed
+  cropList: computed,
+  newsList: observable,
+  updateNewsList: action,
+  newsAllList: computed
 });
 
 
