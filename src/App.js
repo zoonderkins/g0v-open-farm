@@ -22,7 +22,7 @@ class App extends Component {
   };
   render() {
     return (
-      <Router onChange={this.handleRoute}>
+      <Router onClick={this.handleRoute}>
         <div>
           <Helmet>
             <title>{appStore.title}</title>
@@ -33,7 +33,6 @@ class App extends Component {
               render={props => (
                 <Home {...props} currentTitle={"Home"} store={appStore} />
               )}
-              exact
             />
             <Route
               path="/category"
@@ -69,7 +68,8 @@ class App extends Component {
               )}
             />
             <Route path="/content" component={Content} />
-            <Route exact component={Error} />
+
+            <Route component={Error} />
           </Switch>
         </div>
       </Router>
