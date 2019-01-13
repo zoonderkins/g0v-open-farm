@@ -23,7 +23,7 @@ class App extends Component {
   render() {
     return (
       <Router onChange={this.handleRoute}>
-        <div>
+        <React.Fragment>
           <Helmet>
             <title>{appStore.title}</title>
           </Helmet>
@@ -71,7 +71,7 @@ class App extends Component {
             <Route path="/content" component={Content} />
             <Route exact component={Error} />
           </Switch>
-        </div>
+        </React.Fragment>
       </Router>
     );
   }
