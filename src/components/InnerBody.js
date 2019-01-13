@@ -87,7 +87,7 @@ class InnerBody extends Component {
     const { value } = this.state;
     return (
       <React.Fragment>
-        <SubNav />
+        <SubNav store={this.props.store}/>
         <div className={classes.root}>
           <Paper>
             <AppBar position="static">
