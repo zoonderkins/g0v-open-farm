@@ -96,8 +96,8 @@ class InnerBody extends Component {
                 value={value}
                 onChange={this.handleChange}
               >
-                <Tab label="植物列表" style={{ width: "45vw" }} />
-                <Tab label="食物的營養" style={{ width: "45vw" }} />
+                <Tab label="植物列表" style={{ width: "49vw" }} />
+                <Tab label="食物的營養" style={{ width: "49vw" }} />
               </Tabs>
             </AppBar>
             {value === 0 && (
