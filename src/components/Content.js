@@ -146,15 +146,7 @@ class Content extends Component {
               </CardActionArea>
             </Card>):"";}
             )}
-            {(checkShowList(vegatable))&&
-              <Card>
-                <CardActionArea>
-                  <CardContent>
-                    No data
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            }
+            {checkShowList(vegatable)&&(<span>No data</span>)}
         </div>
       </div>
     );
@@ -168,8 +160,8 @@ class Content extends Component {
 const checkShowList = (vegatable) => {
   let checkedNum = 0;
   showList.forEach(checkedItem => {
-    if ( vegatable.hasOwnProperty(`${checkedItem}`) && vegatable[`${checkedItem}`]!=="" && vegatable[`${checkedItem}`]!== null ) {
-      checkedItem++;
+    if ( vegatable.hasOwnProperty(`${checkedItem}`) && vegatable[`${checkedItem}`]!="" && vegatable[`${checkedItem}`]!= null ) {
+      checkedNum++;
     } 
   });
   return checkedNum === 0;
