@@ -77,7 +77,7 @@ class ItemsList extends Component {
       <React.Fragment>
         <Nav store={store} />
         <div>{this.renderList()}</div>
-        {this.props.store.loading===true&&<LoadingSpinner loading={this.props.store.loading}/>}
+        {this.props.store.loading===true&&this.props.store.itemlist.length===0&&<LoadingSpinner loading={this.props.store.loading}/>}
       </React.Fragment>
     );
   }

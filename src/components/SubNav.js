@@ -4,7 +4,8 @@ import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-
+import { getVegatableList } from "../util/apiLogic";
+import {observer} from 'mobx-react';
 const styles = {
   root: {
     flexGrow: 1,
@@ -32,10 +33,26 @@ class SubNav extends React.Component {
   state = {
     value: 0
   };
-  handleChange = (event, value) => {
+  filterByMonth = (month) => ((item)=>(item.harvest_month!==null && Number(item.harvest_month) === Number(month)));
+  handleChange =  async (event, value) => {
     this.setState({ value });
+    let vegetableList = [];
+    try {
+      this.props.store.setLoadingState(true);
+      if (value===0) {
+        vegetableList = await getVegatableList({ numToFetch: 200 });
+      } else {
+        vegetableList = await getVegatableList({ numToFetch: 200, filterFn: this.filterByMonth(value) });
+      }
+      this.props.store.updateList(vegetableList);
+      console.log(`[itemlist]`, this.props.store.itemlist);
+    } catch (e) {
+      console.log(`[change month] error `, e.toString() );
+    } finally {
+      this.props.store.setLoadingState(false);
+    }
   };
-
+  
   render() {
     const { classes } = this.props;
     const { value } = this.state;
@@ -48,6 +65,7 @@ class SubNav extends React.Component {
             variant="scrollable"
             scrollButtons="on"
           >
+            <Tab label="All" />>
             <Tab label="Jan" />
             <Tab label="Feb" />
             <Tab label="March" />
@@ -70,5 +88,5 @@ class SubNav extends React.Component {
 SubNav.propTypes = {
   classes: PropTypes.object.isRequired
 };
-
+SubNav = observer(SubNav);
 export default withStyles(styles)(SubNav);

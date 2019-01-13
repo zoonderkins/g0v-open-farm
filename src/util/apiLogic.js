@@ -14,8 +14,7 @@ const getVegatableList = async ({numToFetch=10, filterFn=null}) => {
     }
     // only list previous numToFetch items
     finalResult = finalResult.filter((item)=> {
-      return (item.cover != null && item.avg_total_growing_days!= null && item.min_growing_temperature!= null
-      && item.height!=null) || (item.max_pH!=null && item.min_pH!=null && item.variety!=null);
+      return (item.cover !== null);
     });
     finalResult = finalResult.slice(0, numToFetch);
     console.log(`[getVegatableList] api data:`,finalResult);
@@ -42,18 +41,14 @@ const fetchMethod = async ({apiUrl="", option=null}) => {
       result = await fetch(`${apiUrl}`, option);
     }
     let finalResult = null;
-    console.log(result);
     if (result.status === 200) {
       try {
-        console.log('final0:', finalResult);
         finalResult = await result.json();
-        console.log('final1:',finalResult);
       } catch (parseErr) {
         throw new Error(parseErr.toString());
       }
     } else {
       finalResult = await result.text();
-      console.log('final2:',finalResult);
       throw new Error(finalResult);
     }
     return finalResult;
