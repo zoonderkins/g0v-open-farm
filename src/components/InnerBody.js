@@ -27,19 +27,19 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     flexWrap: "wrap",
-    // maxHeight: "50vw",
-    // width: "100%",
+    width: "100%",
     height: "100%",
     overflow: "hidden",
     justifyContent: "center",
-    backgroundSize: "cover",
-    alignItems: "center",
-    backgroundPosition: "center center"
+    // backgroundSize: "cover",
+    alignItems: "center"
+    // backgroundPosition: "center center"
   },
   img: {
-    height: "50vw",
+    height: "170px",
+    width: "100%",
     // maxHeight: "80%",
-    width: "100%"
+    objectFit: "cover"
     // minHeight: "200px"
   },
   chart: {
