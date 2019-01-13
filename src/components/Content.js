@@ -49,7 +49,7 @@ const styles = {
     zIndex: "22",
     marginLeft: "-50%",
     right: "10px",
-    top: "40vw"
+    top: "22vh"
   },
   back: {
     position: "absolute",
