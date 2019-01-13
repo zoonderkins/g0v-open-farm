@@ -100,14 +100,14 @@ class Content extends Component {
       <div className={classes.root}>
         <CardActionArea>
           <Typography variant="h5" component="h2" className={classes.title}>
-            {`${vegatable.common_names}`}
+            {`${vegatable.name}`}
           </Typography>
           <CardMedia
             component="img"
-            alt={`${vegatable.common_names}`}
+            alt={`${vegatable.name}`}
             className={classes.media}
             image={`${vegatable.cover}`}
-            title={`${vegatable.common_names}`}
+            title={`${vegatable.name}`}
           />
         </CardActionArea>
         <Link to="/category">
