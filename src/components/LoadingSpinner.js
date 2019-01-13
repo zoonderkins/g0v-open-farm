@@ -1,16 +1,20 @@
 import React, {Component} from 'react';
-import {DotLoader} from 'react-spinners';
-
+import {BarLoader	} from 'react-spinners';
+import css from '@emotion/css';
+const override = css`
+  display:block; 
+  margin: 0 auto;
+`;
 class LoadingSpinner extends Component{
   render() {
     let {loading} = this.props;
     console.log(`[new loading]`, loading);
     return (
       <div className="sweet-loading">
-        <DotLoader
-          css={'display:block; margin: 10vh auto;'}
+        <BarLoader	
+          css={`display:block; margin:0 auto;`}
           sizeUnit={"vw"}          
-          size={50}
+          size={100}
           color={"#123abc"}
           loading={loading}
         />
