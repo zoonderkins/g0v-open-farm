@@ -126,36 +126,46 @@ class Content extends Component {
 
         <div className={classes.wrap}>
           {showList.map((x, i) => {
-            return vegatable.hasOwnProperty(`${x}`) &&
-              vegatable[`${x}`] !== null ? (
-              <Card key={i} className={classes.card}>
-                <CardActionArea>
-                  <Link to={`/${x}`}>
-                    <CardContent>
-                      <Typography component="h1">
-                        <img
-                          className={classes.contentImg}
-                          src={`${icons[i]}`}
-                          alt={`${x}`}
-                        />
-                      </Typography>
-                      <Typography component="p" style={{ textAlign: "center" }}>
-                        {`${vegatable[`${x}`]} ${units[i]}`}
-                      </Typography>
-                    </CardContent>
-                  </Link>
-                </CardActionArea>
-              </Card>
-            ) : (
-              ""
-            );
-          })}
+            
+            return (vegatable.hasOwnProperty(`${x}`)&&vegatable[`${x}`]!==null&&vegatable[`${x}`]!=="")?(<Card key={i} className={classes.card}>
+              <CardActionArea>
+                <Link to={`/${x}`}>
+                  <CardContent>
+                    <Typography component="h1">
+                      <img
+                        className={classes.contentImg}
+                        src={`${icons[i]}`}
+                        alt={`${x}`}
+                      />
+                    </Typography>
+                    <Typography component="p" style={{ textAlign: "center" }}>
+                      {`${vegatable[`${x}`]} ${units[i]}`}
+                    </Typography>
+                  </CardContent>
+                </Link>
+              </CardActionArea>
+            </Card>):"";}
+            )}
+            {checkShowList(vegatable)&&(<span>No data</span>)}
         </div>
       </div>
     );
   }
 }
-
+/**
+ * @description checkShowList
+ * 
+ * @param {object} vegatable 
+ */
+const checkShowList = (vegatable) => {
+  let checkedNum = 0;
+  showList.forEach(checkedItem => {
+    if ( vegatable.hasOwnProperty(`${checkedItem}`) && vegatable[`${checkedItem}`]!="" && vegatable[`${checkedItem}`]!= null ) {
+      checkedNum++;
+    } 
+  });
+  return checkedNum === 0;
+};
 Content.propTypes = {
   classes: PropTypes.object.isRequired
 };
