@@ -126,7 +126,7 @@ class Content extends Component {
         <div className={classes.wrap}>
           {showList.map((x, i) => {
             
-            return (vegatable.hasOwnProperty(`${x}`)&&vegatable[`${x}`]!==null)?(<Card key={i} className={classes.card}>
+            return (vegatable.hasOwnProperty(`${x}`)&&vegatable[`${x}`]!==null&&vegatable[`${x}`]!=="")?(<Card key={i} className={classes.card}>
               <CardActionArea>
                 <Link to={`/${x}`}>
                   <CardContent>
@@ -145,12 +145,34 @@ class Content extends Component {
               </CardActionArea>
             </Card>):"";}
             )}
+            {(checkShowList(vegatable))&&
+              <Card>
+                <CardActionArea>
+                  <CardContent>
+                    No data
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            }
         </div>
       </div>
     );
   }
 }
-
+/**
+ * @description checkShowList
+ * 
+ * @param {object} vegatable 
+ */
+const checkShowList = (vegatable) => {
+  let checkedNum = 0;
+  showList.forEach(checkedItem => {
+    if ( vegatable.hasOwnProperty(`${checkedItem}`) && vegatable[`${checkedItem}`]!=="" && vegatable[`${checkedItem}`]!== null ) {
+      checkedItem++;
+    } 
+  });
+  return checkedNum === 0;
+};
 Content.propTypes = {
   classes: PropTypes.object.isRequired
 };
