@@ -35,8 +35,8 @@ class About extends Component {
               <Icon>mail</Icon>
             </Avatar>
             <ListItemText
-              primary="Send email"
-              secondary="Send an email if you have any questions or suggestions"
+              primary="聯繫我們"
+              secondary="歡迎與我們聯絡如果有任何建議及相關資料修正"
             />
           </ListItem>
           <ListItem>
@@ -44,8 +44,8 @@ class About extends Component {
               <Icon>star</Icon>
             </Avatar>
             <ListItemText
-              primary="Rate us"
-              secondary="Love it? Give us a Star"
+              primary="Star"
+              secondary="喜歡我們的專案嗎，別吝嗇您的Start 與 分享哦 啾咪"
             />
           </ListItem>
           <ListItem>

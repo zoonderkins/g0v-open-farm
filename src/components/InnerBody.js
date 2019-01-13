@@ -17,21 +17,34 @@ const styles = {
   root: {
     padding: "1%",
     marginTop: "5px",
-    width: "100%",
-    display: "flex",
-    flexGrow: 1
-  },
-
-  img: {
-    minHeight: "80%",
-    maxHeight: "80%",
-    minWidth: "100%",
-    maxWidth: "100%",
-    alignSelf: "center"
+    width: "100%"
   },
   p: {
     textAlign: "center",
     padding: "5%"
+  },
+  masonry: {
+    display: "flex",
+    flexDirection: "column",
+    flexWrap: "wrap",
+    // maxHeight: "50vw",
+    // width: "100%",
+    height: "100%",
+    overflow: "hidden",
+    justifyContent: "center",
+    backgroundSize: "cover",
+    alignItems: "center",
+    backgroundPosition: "center center"
+  },
+  img: {
+    height: "50vw",
+    // maxHeight: "80%",
+    width: "100%"
+    // minHeight: "200px"
+  },
+  chart: {
+    height: "100vw",
+    maxHeight: "50vh"
   }
 };
 
@@ -57,7 +70,7 @@ class InnerBody extends Component {
     let { itemlist } = this.props.store;
     const { classes } = this.props;
     return itemlist.map((ctx, index) => (
-      <Grid item xs={6} sm={4} md={3} key={index}>
+      <Grid item xs={6} sm={4} md={3} key={index} className={classes.masonry}>
         <Paper>
           <Link to={{ pathname: "/content", state: { ...ctx } }}>
             <img
@@ -87,7 +100,7 @@ class InnerBody extends Component {
     const { value } = this.state;
     return (
       <React.Fragment>
-        <SubNav store={this.props.store}/>
+        <SubNav store={this.props.store} />
         <div className={classes.root}>
           <Paper>
             <AppBar position="static">
@@ -105,7 +118,12 @@ class InnerBody extends Component {
                 {this.renderVegatables()}
               </Grid>
             )}
-            {value === 1 && <Chart />}
+
+            {value === 1 && (
+              <Grid container spacing={8} className={classes.chart}>
+                <Chart />
+              </Grid>
+            )}
           </Paper>
         </div>
       </React.Fragment>

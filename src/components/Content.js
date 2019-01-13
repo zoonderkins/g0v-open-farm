@@ -16,7 +16,7 @@ const styles = {
     overflow: "hidden"
   },
   title: {
-    zIndex: 22,
+    zIndex: 10,
     position: "absolute",
     top: 10,
     left: 50,
@@ -26,12 +26,12 @@ const styles = {
   },
   media: {
     objectFit: "cover",
+    opacity: ".5",
     height: "190px"
   },
   wrap: {
     display: "flex",
     flexDirection: "row",
-
     flexWrap: "wrap",
     padding: "10px",
     height: "auto",
@@ -49,7 +49,7 @@ const styles = {
     zIndex: "22",
     marginLeft: "-50%",
     right: "10px",
-    top: "20vh"
+    top: "40vw"
   },
   back: {
     position: "absolute",
@@ -99,9 +99,6 @@ class Content extends Component {
     return (
       <div className={classes.root}>
         <CardActionArea>
-          <Typography variant="h5" component="h2" className={classes.title}>
-            {`${vegatable.name}`}
-          </Typography>
           <CardMedia
             component="img"
             alt={`${vegatable.name}`}
@@ -109,6 +106,9 @@ class Content extends Component {
             image={`${vegatable.cover}`}
             title={`${vegatable.name}`}
           />
+          <Typography variant="h5" component="h2" className={classes.title}>
+            {`${vegatable.name}`}
+          </Typography>
         </CardActionArea>
         <Link to="/category">
           <IconButton className={classes.back}>
@@ -123,6 +123,7 @@ class Content extends Component {
             alt={"default"}
           />
         </Fab>
+
         <div className={classes.wrap}>
           {showList.map((x, i) => {
             
