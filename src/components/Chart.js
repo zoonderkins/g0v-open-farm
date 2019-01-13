@@ -3,43 +3,42 @@ import {
   Radar,
   RadarChart,
   PolarGrid,
-  Legend,
+  ResponsiveContainer,
   PolarAngleAxis,
   PolarRadiusAxis
 } from "recharts";
 
 const data = [
-  { subject: "Math", A: 120, B: 110, fullMark: 150 },
-  { subject: "Chinese", A: 98, B: 130, fullMark: 150 },
-  { subject: "English", A: 86, B: 130, fullMark: 150 },
-  { subject: "Geography", A: 99, B: 100, fullMark: 150 },
-  { subject: "Physics", A: 85, B: 90, fullMark: 150 },
-  { subject: "History", A: 65, B: 85, fullMark: 150 }
+  { subject: "蔬菜", A: 10, B: 60, fullMark: 100 },
+  { subject: "水果", A: 28, B: 80, fullMark: 100 },
+  { subject: "熱量", A: 36, B: 90, fullMark: 100 },
+  { subject: "果糖", A: 59, B: 50, fullMark: 100 }
 ];
 
 export default class Chart extends Component {
   render() {
     return (
       <React.Fragment>
-        <RadarChart
-          cx={300}
-          cy={250}
-          outerRadius={150}
-          width={600}
-          height={500}
-          data={data}
-        >
-          <PolarGrid />
-          <PolarAngleAxis dataKey="subject" />
-          <PolarRadiusAxis />
-          <Radar
-            name="Mike"
-            dataKey="A"
-            stroke="#8884d8"
-            fill="#8884d8"
-            fillOpacity={0.6}
-          />
-        </RadarChart>
+        <ResponsiveContainer width={300} height="90%">
+          <RadarChart
+            outerRadius={90}
+            cx={160}
+            width={450}
+            height={250}
+            data={data}
+          >
+            <PolarGrid />
+            <PolarAngleAxis dataKey="subject" />
+            <PolarRadiusAxis />
+            <Radar
+              name="Mike"
+              dataKey="A"
+              stroke="#8884d8"
+              fill="#8884d8"
+              fillOpacity={0.6}
+            />
+          </RadarChart>
+        </ResponsiveContainer>
       </React.Fragment>
     );
   }

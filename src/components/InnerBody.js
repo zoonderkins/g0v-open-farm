@@ -15,22 +15,23 @@ import Chart from "./Chart";
 
 const styles = {
   root: {
-    padding: "2%",
+    padding: "1%",
     marginTop: "5px",
-    margin: "3%",
-    width: "auto",
+    width: "100%",
     display: "flex",
     flexGrow: 1
   },
 
   img: {
-    maxHeigh: "90%",
+    minHeight: "80%",
+    maxHeight: "80%",
+    minWidth: "100%",
     maxWidth: "100%",
     alignSelf: "center"
   },
   p: {
     textAlign: "center",
-    padding: "3%"
+    padding: "5%"
   }
 };
 
@@ -88,7 +89,7 @@ class InnerBody extends Component {
       <React.Fragment>
         <SubNav />
         <div className={classes.root}>
-          <Paper className={classes.rootPage}>
+          <Paper>
             <AppBar position="static">
               <Tabs
                 variant="fullWidth"
