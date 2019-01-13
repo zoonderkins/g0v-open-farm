@@ -39,6 +39,7 @@ class SubNav extends React.Component {
     let vegetableList = [];
     try {
       this.props.store.setLoadingState(true);
+      this.props.store.updateList(vegetableList);
       if (value===0) {
         vegetableList = await getVegatableList({ numToFetch: 200 });
       } else {
