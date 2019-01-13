@@ -15,7 +15,7 @@ class LoadingSpinner extends Component{
           css={`display:block; margin:0 auto;`}
           sizeUnit={"vw"}          
           size={100}
-          color={"#123abc"}
+          color={"#433B37"}
           loading={loading}
         />
       </div>

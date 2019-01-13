@@ -96,7 +96,7 @@ class InnerBody extends Component {
     value: 0
   };
   render() {
-    const { classes } = this.props;
+    const { classes, store } = this.props;
     const { value } = this.state;
     return (
       <React.Fragment>
@@ -118,7 +118,7 @@ class InnerBody extends Component {
                 {this.renderVegatables()}
               </Grid>
             )}
-
+            {value === 0 && (store.itemlist.length===0&&store.loading===false&&<div>No Data</div>)}
             {value === 1 && (
               <Grid container spacing={8} className={classes.chart}>
                 <Chart />
