@@ -118,10 +118,13 @@ class InnerBody extends Component {
                 {this.renderVegatables()}
               </Grid>
             )}
-            {value === 0 && (store.itemlist.length===0&&store.loading===false&&<div>No Data</div>)}
+            {value === 0 &&
+              (store.itemlist.length === 0 && store.loading === false && (
+                <div>No Data</div>
+              ))}
             {value === 1 && (
               <Grid container spacing={8} className={classes.chart}>
-                <Chart />
+                <Chart store={this.props.store} />
               </Grid>
             )}
           </Paper>
