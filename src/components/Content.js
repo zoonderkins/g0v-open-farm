@@ -10,7 +10,11 @@ import Typography from "@material-ui/core/Typography";
 import Fab from "@material-ui/core/Fab";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import IconButton from "@material-ui/core/IconButton";
-
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Grid from "@material-ui/core/Grid";
+import Chart from "./Chart";
 const styles = {
   root: {
     overflow: "hidden"
@@ -87,9 +91,19 @@ class Content extends Component {
         : null
       : null;
     this.state = {
-      vegatable: vegatable
+      vegatable: vegatable,
+      value: 0
     };
   }
+
+  handleChange = (event, value) => {
+    this.setState({ value });
+    this.props.store.setLoadingState(false);
+  };
+
+  // state = {
+  //   value: 0
+  // };
 
   render() {
     const { classes } = this.props;
@@ -125,28 +139,52 @@ class Content extends Component {
         </Fab>
 
         <div className={classes.wrap}>
+          <AppBar position="static">
+            <Tabs
+              variant="fullWidth"
+              value={value}
+              onChange={this.handleChange}
+            >
+              <Tab label="植物列表" style={{ width: "49vw" }} />
+              <Tab label="食物的營養" style={{ width: "49vw" }} />
+            </Tabs>
+          </AppBar>
+          value === 0 && (
           {showList.map((x, i) => {
-            
-            return (vegatable.hasOwnProperty(`${x}`)&&vegatable[`${x}`]!==null&&vegatable[`${x}`]!=="")?(<Card key={i} className={classes.card}>
-              <CardActionArea>
-                <Link to={`/${x}`}>
-                  <CardContent>
-                    <Typography component="h1">
-                      <img
-                        className={classes.contentImg}
-                        src={`${icons[i]}`}
-                        alt={`${x}`}
-                      />
-                    </Typography>
-                    <Typography component="p" style={{ textAlign: "center" }}>
-                      {`${vegatable[`${x}`]} ${units[i]}`}
-                    </Typography>
-                  </CardContent>
-                </Link>
-              </CardActionArea>
-            </Card>):"";}
-            )}
-            {checkShowList(vegatable)&&(<span>No data</span>)}
+            return vegatable.hasOwnProperty(`${x}`) &&
+              vegatable[`${x}`] !== null &&
+              vegatable[`${x}`] !== "" ? (
+              <Card key={i} className={classes.card}>
+                <CardActionArea>
+                  <Link to={`/${x}`}>
+                    <CardContent>
+                      <Typography component="h1">
+                        <img
+                          className={classes.contentImg}
+                          src={`${icons[i]}`}
+                          alt={`${x}`}
+                        />
+                      </Typography>
+                      <Typography component="p" style={{ textAlign: "center" }}>
+                        {`${vegatable[`${x}`]} ${units[i]}`}
+                      </Typography>
+                    </CardContent>
+                  </Link>
+                </CardActionArea>
+              </Card>
+            ) : (
+              ""
+            );
+          })}
+          {value === 0 &&
+            (store.itemlist.length === 0 && store.loading === false && (
+              <div>No Data</div>
+            ))}
+          {value === 1 && (
+            <Grid container spacing={8} className={classes.chart}>
+              <Chart store={this.props.store} />
+            </Grid>
+          )}
         </div>
       </div>
     );
@@ -154,15 +192,19 @@ class Content extends Component {
 }
 /**
  * @description checkShowList
- * 
- * @param {object} vegatable 
+ *
+ * @param {object} vegatable
  */
-const checkShowList = (vegatable) => {
+const checkShowList = vegatable => {
   let checkedNum = 0;
   showList.forEach(checkedItem => {
-    if ( vegatable.hasOwnProperty(`${checkedItem}`) && vegatable[`${checkedItem}`]!="" && vegatable[`${checkedItem}`]!= null ) {
+    if (
+      vegatable.hasOwnProperty(`${checkedItem}`) &&
+      vegatable[`${checkedItem}`] != "" &&
+      vegatable[`${checkedItem}`] != null
+    ) {
       checkedNum++;
-    } 
+    }
   });
   return checkedNum === 0;
 };

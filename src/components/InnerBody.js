@@ -5,13 +5,10 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
-import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+
 import SubNav from "./SubNav";
 import { getVegatableList } from "../util/apiLogic";
 import { observer } from "mobx-react";
-import Chart from "./Chart";
 
 const styles = {
   root: {
@@ -72,7 +69,13 @@ class InnerBody extends Component {
     return itemlist.map((ctx, index) => (
       <Grid item xs={6} sm={4} md={3} key={index} className={classes.masonry}>
         <Paper>
-          <Link to={{ pathname: "/content", state: { ...ctx } }}>
+          <Link
+            to={{
+              pathname: "/content",
+              state: { ...ctx },
+              store: { itemlist }
+            }}
+          >
             <img
               className={classes.img}
               src={ctx.cover}
@@ -103,6 +106,11 @@ class InnerBody extends Component {
         <SubNav store={this.props.store} />
         <div className={classes.root}>
           <Paper>
+            <Grid container spacing={8} style={{ marginTop: "5px" }}>
+              {this.renderVegatables()}
+            </Grid>
+          </Paper>
+          {/* <Paper>
             <AppBar position="static">
               <Tabs
                 variant="fullWidth"
@@ -127,7 +135,7 @@ class InnerBody extends Component {
                 <Chart store={this.props.store} />
               </Grid>
             )}
-          </Paper>
+          </Paper> */}
         </div>
       </React.Fragment>
     );
