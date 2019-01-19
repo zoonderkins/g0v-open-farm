@@ -24,7 +24,8 @@ const styles = {
     position: "absolute",
     top: 10,
     left: 50,
-    color: "white",
+    backgroundColor: "#fbe9a9",
+    color: "#464335",
     fontWeight: "bold",
     background: "black"
   },
@@ -35,6 +36,7 @@ const styles = {
   },
   wrap: {
     display: "flex",
+    marginTop: "10px",
     flexDirection: "row",
     flexWrap: "wrap",
     padding: "10px",
@@ -50,17 +52,19 @@ const styles = {
   },
   fab: {
     position: "absolute",
-    zIndex: "22",
+    zIndex: "100 !important",
     marginLeft: "-50%",
     right: "10px",
-    top: "22vh"
+    top: "16vh"
   },
   back: {
     position: "absolute",
-    zIndex: "22",
+    backgroundColor: "#433b37",
+    zIndex: "20",
     fontWeight: "bold",
-    top: "5vh",
-    left: "5px"
+    top: "7vh",
+    left: "5px",
+    boxShadow: "1px 2px #888888"
   },
   chart: {
     height: "100vw",
@@ -119,10 +123,10 @@ class Content extends Component {
         <CardActionArea>
           <CardMedia
             component="img"
-            alt={`${vegatable.name}`}
+            // alt={`${vegatable.name}`}
             className={classes.media}
             image={`${vegatable.cover}`}
-            title={`${vegatable.name}`}
+            // title={`${vegatable.name}`}
           />
           <Typography variant="h5" component="h2" className={classes.title}>
             {`${vegatable.name}`}
@@ -149,8 +153,22 @@ class Content extends Component {
               value={this.state.value}
               onChange={this.handleChange}
             >
-              <Tab label="細項" style={{ width: "49vw" }} />
-              <Tab label="營養" style={{ width: "49vw" }} />
+              <Tab
+                label="細項"
+                style={{
+                  color: "#fbe9a9",
+                  backgroundColor: "#464335",
+                  width: "49vw"
+                }}
+              />
+              <Tab
+                label="營養"
+                style={{
+                  color: "#fbe9a9",
+                  backgroundColor: "#464335",
+                  width: "49vw"
+                }}
+              />
             </Tabs>
           </AppBar>
           {this.state.value === 0 && (

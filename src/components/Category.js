@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Nav from "./Nav";
 import InnerBody from "./InnerBody";
-import {observer} from 'mobx-react';
-import LoadingSpinner from './LoadingSpinner';
+import { observer } from "mobx-react";
+import LoadingSpinner from "./LoadingSpinner";
 import { getVegatableList } from "../util/apiLogic";
 class Category extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class Category extends Component {
     // document.title = this.props.store.title;
     console.log("[itemlist]", this.props.store.itemlist);
   }
-  
+
   async componentWillReceiveProps() {
     try {
       // document.title = this.props.store.title;
@@ -31,11 +31,13 @@ class Category extends Component {
     // let {store} = this.props.store;
     console.log(`[current loading]`, this.props.store.loading);
     return (
-      <div>
+      <React.Fragment>
         <Nav store={this.props.store} />
         <InnerBody store={this.props.store} />
-        {this.props.store.loading===true&&<LoadingSpinner loading={this.props.store.loading}/>}
-      </div>
+        {this.props.store.loading === true && (
+          <LoadingSpinner loading={this.props.store.loading} />
+        )}
+      </React.Fragment>
     );
   }
 }

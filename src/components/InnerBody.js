@@ -28,20 +28,12 @@ const styles = {
     height: "100%",
     overflow: "hidden",
     justifyContent: "center",
-    // backgroundSize: "cover",
     alignItems: "center"
-    // backgroundPosition: "center center"
   },
   img: {
     height: "170px",
     width: "100%",
-    // maxHeight: "80%",
     objectFit: "cover"
-    // minHeight: "200px"
-  },
-  chart: {
-    height: "100vw",
-    maxHeight: "50vh"
   }
 };
 
@@ -100,7 +92,6 @@ class InnerBody extends Component {
   };
   render() {
     const { classes, store } = this.props;
-    const { value } = this.state;
     return (
       <React.Fragment>
         <SubNav store={this.props.store} />
@@ -110,32 +101,6 @@ class InnerBody extends Component {
               {this.renderVegatables()}
             </Grid>
           </Paper>
-          {/* <Paper>
-            <AppBar position="static">
-              <Tabs
-                variant="fullWidth"
-                value={value}
-                onChange={this.handleChange}
-              >
-                <Tab label="植物列表" style={{ width: "49vw" }} />
-                <Tab label="食物的營養" style={{ width: "49vw" }} />
-              </Tabs>
-            </AppBar>
-            {value === 0 && (
-              <Grid container spacing={8} style={{ marginTop: "5px" }}>
-                {this.renderVegatables()}
-              </Grid>
-            )}
-            {value === 0 &&
-              (store.itemlist.length === 0 && store.loading === false && (
-                <div>No Data</div>
-              ))}
-            {value === 1 && (
-              <Grid container spacing={8} className={classes.chart}>
-                <Chart store={this.props.store} />
-              </Grid>
-            )}
-          </Paper> */}
         </div>
       </React.Fragment>
     );

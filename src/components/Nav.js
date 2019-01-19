@@ -105,6 +105,10 @@ class Nav extends Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar
+          style={{
+            color: "#fbe9a9",
+            backgroundColor: "#464335"
+          }}
           position="static"
           className={classNames(classes.appBar, {
             [classes.appBarShift]: open
@@ -119,7 +123,12 @@ class Nav extends Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit">
+            <Typography
+              variant="h6"
+              style={{
+                color: "#fbe9a9"
+              }}
+            >
               {this.state.currentTitle}
             </Typography>
           </Toolbar>
