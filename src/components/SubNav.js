@@ -34,7 +34,7 @@ class SubNav extends React.Component {
     value: 0
   };
   filterByMonth = month => item =>
-    item.harvest_month !== null && Number(item.harvest_month) === Number(month);
+    item.harvest_month !== null && item.harvest_month.includes(month);
   handleChange = async (event, value) => {
     this.setState({ value });
     let vegetableList = [];
