@@ -61,6 +61,10 @@ const styles = {
     fontWeight: "bold",
     top: "5vh",
     left: "5px"
+  },
+  chart: {
+    height: "100vw",
+    maxHeight: "50vh"
   }
 };
 
@@ -90,25 +94,25 @@ class Content extends Component {
         ? location.state
         : null
       : null;
-    this.state = {
-      vegatable: vegatable,
-      value: 0
+    this.vege = {
+      vegatable: vegatable
     };
   }
 
   handleChange = (event, value) => {
     this.setState({ value });
-    this.props.store.setLoadingState(false);
+    // this.props.store.setLoadingState(false);
   };
 
-  // state = {
-  //   value: 0
-  // };
+  state = {
+    value: 0
+  };
 
   render() {
     const { classes } = this.props;
-    const { vegatable } = this.state;
+    const { vegatable } = this.vege;
     console.log(vegatable);
+    console.log(this.state);
 
     return (
       <div className={classes.root}>
@@ -142,47 +146,50 @@ class Content extends Component {
           <AppBar position="static">
             <Tabs
               variant="fullWidth"
-              value={value}
+              value={this.state.value}
               onChange={this.handleChange}
             >
-              <Tab label="植物列表" style={{ width: "49vw" }} />
-              <Tab label="食物的營養" style={{ width: "49vw" }} />
+              <Tab label="細項" style={{ width: "49vw" }} />
+              <Tab label="營養" style={{ width: "49vw" }} />
             </Tabs>
           </AppBar>
-          value === 0 && (
-          {showList.map((x, i) => {
-            return vegatable.hasOwnProperty(`${x}`) &&
-              vegatable[`${x}`] !== null &&
-              vegatable[`${x}`] !== "" ? (
-              <Card key={i} className={classes.card}>
-                <CardActionArea>
-                  <Link to={`/${x}`}>
-                    <CardContent>
-                      <Typography component="h1">
-                        <img
-                          className={classes.contentImg}
-                          src={`${icons[i]}`}
-                          alt={`${x}`}
-                        />
-                      </Typography>
-                      <Typography component="p" style={{ textAlign: "center" }}>
-                        {`${vegatable[`${x}`]} ${units[i]}`}
-                      </Typography>
-                    </CardContent>
-                  </Link>
-                </CardActionArea>
-              </Card>
-            ) : (
-              ""
-            );
-          })}
-          {value === 0 &&
-            (store.itemlist.length === 0 && store.loading === false && (
-              <div>No Data</div>
-            ))}
-          {value === 1 && (
+          {this.state.value === 0 && (
+            <React.Fragment>
+              {showList.map((x, i) => {
+                return vegatable.hasOwnProperty(`${x}`) &&
+                  vegatable[`${x}`] !== null &&
+                  vegatable[`${x}`] !== "" ? (
+                  <Card key={i} className={classes.card}>
+                    <CardActionArea>
+                      <Link to={`/${x}`}>
+                        <CardContent>
+                          <Typography component="h1">
+                            <img
+                              className={classes.contentImg}
+                              src={`${icons[i]}`}
+                              alt={`${x}`}
+                            />
+                          </Typography>
+                          <Typography
+                            component="p"
+                            style={{ textAlign: "center" }}
+                          >
+                            {`${vegatable[`${x}`]} ${units[i]}`}
+                          </Typography>
+                        </CardContent>
+                      </Link>
+                    </CardActionArea>
+                  </Card>
+                ) : (
+                  ""
+                );
+              })}
+              {checkShowList(vegatable) && <span>No data</span>}
+            </React.Fragment>
+          )}
+          {this.state.value === 1 && (
             <Grid container spacing={8} className={classes.chart}>
-              <Chart store={this.props.store} />
+              <Chart />
             </Grid>
           )}
         </div>
