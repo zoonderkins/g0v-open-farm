@@ -52,7 +52,7 @@ const styles = {
   },
   fab: {
     position: "absolute",
-    zIndex: "100 !important",
+    zIndex: "22",
     marginLeft: "-50%",
     right: "10px",
     top: "16vh"
@@ -61,7 +61,6 @@ const styles = {
     position: "absolute",
     backgroundColor: "#433b37",
     zIndex: "20",
-    fontWeight: "bold",
     top: "7vh",
     left: "5px",
     boxShadow: "1px 2px #888888"
@@ -132,13 +131,14 @@ class Content extends Component {
             {`${vegatable.name}`}
           </Typography>
         </CardActionArea>
+
         <Link to="/category">
-          <IconButton className={classes.back}>
-            <ChevronLeftIcon style={{ color: "white", fontWeight: "bold" }} />
-          </IconButton>
+          <Fab className={classes.back}>
+            <ChevronLeftIcon style={{ color: "white" }} />
+          </Fab>
         </Link>
 
-        <Fab color="default" className={classes.fab}>
+        <Fab className={classes.fab}>
           <img
             style={{ height: "40px" }}
             src="https://static.thenounproject.com/png/61962-200.png"
